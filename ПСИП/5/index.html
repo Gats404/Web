@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ЛР5 — Макет на CSS Grid</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Сетка 12 колонок по 160px и 5 строк разной высоты */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(12, 160px);
+      grid-template-rows: 120px 600px 120px 600px 120px;
+      gap: 0;
+      background-color: #ffffff;
+    }
+
+    .box {
+      background-color: #ffffff;
+      border: 1px solid #bcbcbc;
+      color: #333333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+
+    /* Раскладка блоков по строкам и колонкам */
+    .b1 { grid-column: span 12; grid-row: 1; }
+    .b2 { grid-column: span 4;  grid-row: 2; }
+    .b3 { grid-column: span 4;  grid-row: 2; }
+    .b9 { grid-column: span 4;  grid-row: 2 / span 3; }
+    .b4 { grid-column: span 2;  grid-row: 3; }
+    .b5 { grid-column: span 2;  grid-row: 3; }
+    .b6 { grid-column: span 2;  grid-row: 3; }
+    .b7 { grid-column: span 2;  grid-row: 3; }
+    .b8 { grid-column: span 8;  grid-row: 4; }
+    .b10 { grid-column: span 12; grid-row: 5; }
+  </style>
+</head>
+<body>
+  <div class="grid-container">
+    <div class="box b1">1</div>
+    <div class="box b2">2</div>
+    <div class="box b3">3</div>
+    <div class="box b4">4</div>
+    <div class="box b5">5</div>
+    <div class="box b6">6</div>
+    <div class="box b7">7</div>
+    <div class="box b8">8</div>
+    <div class="box b9">9</div>
+    <div class="box b10">10</div>
+  </div>
+</body>
+</html>

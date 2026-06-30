@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behoof — поиск и сравнение электроники</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="container top-bar__container">
+            <div class="top-bar__item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <span>Москва</span>
+            </div>
+            <div class="top-bar__item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <a href="tel:+74950000000">+7 495 000-00-00</a>
+            </div>
+            <div class="top-bar__item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span>Пн-Вс с 10:00 до 20:00</span>
+            </div>
+            <div class="top-bar__item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <a href="mailto:help@behoof.ru">help@behoof.ru</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="container main-header__container">
+            <div class="logo"><span class="logo__mark">B</span>ehoof</div>
+            <div class="search">
+                <input type="text" class="search__input" placeholder="Поиск среди 1.8 млн товаров">
+                <button class="search__btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+            <div class="header-actions">
+                <button class="action-btn" title="Избранное">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+                <button class="action-btn" title="Сравнение">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                </button>
+                <button class="action-btn action-btn--cart" title="Корзина">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    <span class="badge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero__banner">
+                <div class="hero__content">
+                    <h1 class="hero__title">1.8 млн товаров в 2 272 магазинах</h1>
+                    <p class="hero__subtitle">Найди, сравни, выбери лучшую цену на электронику</p>
+                    <a href="#catalog" class="btn-primary">Перейти к категориям</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROMO BANNER -->
+    <section class="promo">
+        <div class="container">
+            <div class="promo__card" style="background-image:url('img/banner.png');">
+                <a href="#catalog" class="promo__btn">Смотреть</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATALOG -->
+    <section class="catalog" id="catalog">
+        <div class="container">
+            <h2 class="catalog__title">Лучший выбор</h2>
+            <div class="catalog__tags">
+                <button class="tag-btn active">Все</button>
+                <button class="tag-btn">Смартфоны</button>
+                <button class="tag-btn">Ноутбуки</button>
+                <button class="tag-btn">Планшеты</button>
+                <button class="tag-btn">Умные колонки</button>
+                <button class="tag-btn">Часы</button>
+            </div>
+
+            <div class="catalog__grid">
+                <div class="product-card">
+                    <button class="product-card__fav">♡</button>
+                    <div class="product-card__img-box"><img src="img/p1.png" alt="Samsung Galaxy M32" class="product-card__img"></div>
+                    <span class="product-card__discount">−12%</span>
+                    <h3 class="product-card__title">Samsung Galaxy M32 128GB</h3>
+                    <p class="product-card__specs">6.4" AMOLED · 64 Мп · 5000 мА·ч</p>
+                    <div class="product-card__price"><span class="price-now">28 990 ₽</span><span class="price-old">32 950 ₽</span></div>
+                    <button class="product-card__btn">В корзину</button>
+                </div>
+                <div class="product-card">
+                    <button class="product-card__fav">♡</button>
+                    <div class="product-card__img-box"><img src="img/p4.png" alt="Apple iPhone 13" class="product-card__img"></div>
+                    <span class="product-card__discount">−5%</span>
+                    <h3 class="product-card__title">Apple iPhone 13 128GB</h3>
+                    <p class="product-card__specs">6.1" OLED · A15 Bionic · IP68</p>
+                    <div class="product-card__price"><span class="price-now">69 990 ₽</span><span class="price-old">73 600 ₽</span></div>
+                    <button class="product-card__btn">В корзину</button>
+                </div>
+                <div class="product-card">
+                    <button class="product-card__fav">♡</button>
+                    <div class="product-card__img-box"><img src="img/p3.png" alt="Realme C33" class="product-card__img"></div>
+                    <span class="product-card__discount">−15%</span>
+                    <h3 class="product-card__title">Realme C33 4/128GB</h3>
+                    <p class="product-card__specs">6.5" IPS · 50 Мп · чёрный</p>
+                    <div class="product-card__price"><span class="price-now">11 990 ₽</span><span class="price-old">14 100 ₽</span></div>
+                    <button class="product-card__btn">В корзину</button>
+                </div>
+                <div class="product-card">
+                    <button class="product-card__fav">♡</button>
+                    <div class="product-card__img-box"><img src="img/p2.png" alt="Яндекс Станция Макс" class="product-card__img"></div>
+                    <span class="product-card__discount">−8%</span>
+                    <h3 class="product-card__title">Яндекс Станция Макс</h3>
+                    <p class="product-card__specs">Умная колонка · Zigbee · Алиса</p>
+                    <div class="product-card__price"><span class="price-now">19 990 ₽</span><span class="price-old">21 730 ₽</span></div>
+                    <button class="product-card__btn">В корзину</button>
+                </div>
+                <div class="product-card">
+                    <button class="product-card__fav">♡</button>
+                    <div class="product-card__img-box"><img src="img/p5.png" alt="Samsung Galaxy A54" class="product-card__img"></div>
+                    <span class="product-card__discount">−10%</span>
+                    <h3 class="product-card__title">Samsung Galaxy A54 5G</h3>
+                    <p class="product-card__specs">6.4" AMOLED 120 Гц · 8/256 ГБ</p>
+                    <div class="product-card__price"><span class="price-now">34 990 ₽</span><span class="price-old">38 880 ₽</span></div>
+                    <button class="product-card__btn">В корзину</button>
+                </div>
+                <div class="product-card">
+                    <button class="product-card__fav">♡</button>
+                    <div class="product-card__img-box"><img src="img/p6.png" alt="Samsung Galaxy M14" class="product-card__img"></div>
+                    <span class="product-card__discount">−9%</span>
+                    <h3 class="product-card__title">Samsung Galaxy M14 5G</h3>
+                    <p class="product-card__specs">6.6" PLS LCD · 50 Мп · 6000 мА·ч</p>
+                    <div class="product-card__price"><span class="price-now">15 490 ₽</span><span class="price-old">17 020 ₽</span></div>
+                    <button class="product-card__btn">В корзину</button>
+                </div>
+            </div>
+
+            <div class="catalog__footer"><a href="#" class="catalog__all-link">Показать все товары →</a></div>
+        </div>
+    </section>
+
+    <!-- ABOUT / STATS -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="about__title">Behoof помогает вам выбрать</h2>
+            <p class="about__subtitle">покупку подходящую именно вам и по оптимальной цене</p>
+            <div class="about__grid">
+                <div class="stat-card"><span class="stat-card__num">1 млн</span><span class="stat-card__desc">товаров в каталоге</span></div>
+                <div class="stat-card"><span class="stat-card__num">25 лет</span><span class="stat-card__desc">экспертизы на рынке</span></div>
+                <div class="stat-card"><span class="stat-card__num">50</span><span class="stat-card__desc">параметров сравнения</span></div>
+                <div class="stat-card"><span class="stat-card__num">25 млн</span><span class="stat-card__desc">отзывов покупателей</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS / ОБЗОРЫ -->
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <h2 class="reviews__title">Обзоры экспертов</h2>
+            <div class="reviews__grid">
+                <article class="review-card">
+                    <div class="review-card__img" style="background-image:url('img/p4.png');"></div>
+                    <div class="review-card__body">
+                        <span class="review-card__tag">Смартфоны</span>
+                        <h3>Топ-10 смартфонов 2023 года</h3>
+                        <p>Сравнили популярные модели по 50 параметрам и собрали рейтинг лучших.</p>
+                        <a href="#" class="review-card__link">Читать обзор →</a>
+                    </div>
+                </article>
+                <article class="review-card">
+                    <div class="review-card__img" style="background-image:url('img/p2.png');"></div>
+                    <div class="review-card__body">
+                        <span class="review-card__tag">Умный дом</span>
+                        <h3>Какую умную колонку выбрать</h3>
+                        <p>Разбираемся, чем отличаются Алиса, Маруся и Салют, и что брать в 2023.</p>
+                        <a href="#" class="review-card__link">Читать обзор →</a>
+                    </div>
+                </article>
+            </div>
+            <div class="reviews__footer"><a href="#" class="reviews__all-link">Смотреть все обзоры →</a></div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="contacts">
+        <div class="container footer__container">
+            <div class="footer__col footer__col--brand">
+                <div class="logo logo--light"><span class="logo__mark">B</span>ehoof</div>
+                <p class="footer__about">Сервис поиска и сравнения цен на электронику в 2 272 магазинах России.</p>
+            </div>
+            <div class="footer__col">
+                <h4 class="footer__title">Каталог</h4>
+                <a href="#" class="footer__link">Смартфоны</a>
+                <a href="#" class="footer__link">Ноутбуки</a>
+                <a href="#" class="footer__link">Планшеты</a>
+                <a href="#" class="footer__link">Умные колонки</a>
+            </div>
+            <div class="footer__col">
+                <h4 class="footer__title">Контакты</h4>
+                <div class="footer-info__item"><strong>Телефон</strong><p><a href="tel:+74950000000" class="footer__link">+7 495 000-00-00</a></p></div>
+                <div class="footer-info__item"><strong>Почта</strong><p><a href="mailto:help@behoof.ru" class="footer__link">help@behoof.ru</a></p></div>
+                <div class="footer-info__item"><strong>Адрес</strong><p>Москва, ул. Примерная, 1</p></div>
+            </div>
+            <div class="footer__col">
+                <h4 class="footer__title">Подписка на скидки</h4>
+                <div class="footer__subscribe">
+                    <input type="email" placeholder="Ваш email">
+                    <button>OK</button>
+                </div>
+            </div>
+        </div>
+        <div class="container footer__bottom">
+            <p>© Behoof, 2023. Поиск и сравнение электроники.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

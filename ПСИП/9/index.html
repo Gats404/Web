@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ru" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="80" tabindex="0">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behoof — поиск и сравнение электроники</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylee.css">
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <div class="header__top py-2">
+        <div class="container">
+            <div class="row align-items-center gy-2">
+                <div class="col-auto">
+                    <a href="#" class="logo text-decoration-none"><span class="logo__mark">B</span>ehoof</a>
+                </div>
+                <div class="col text-center">
+                    <div class="d-flex flex-wrap justify-content-center gap-3 header__info">
+                        <span class="info-item"><i class="bi bi-geo-alt me-1"></i> Москва</span>
+                        <span class="info-item"><i class="bi bi-clock me-1"></i> Пн-Вс с 10:00 до 20:00</span>
+                        <span class="info-item"><i class="bi bi-envelope me-1"></i> help@behoof.ru</span>
+                    </div>
+                </div>
+                <div class="col-auto text-center text-md-end">
+                    <a href="tel:+74950000000" class="header__phone text-decoration-none fw-bold">
+                        <i class="bi bi-telephone me-2"></i>+7 495 000-00-00</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav id="mainNav" class="navbar navbar-expand-lg header__bottom sticky-top">
+        <div class="container">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center gap-lg-2">
+                    <li class="nav-item"><a class="nav-link active" href="#hero">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#catalog">Каталог</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Категории</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#catalog">Смартфоны</a></li>
+                            <li><a class="dropdown-item" href="#catalog">Умные колонки</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#feedback">Связаться с нами</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#about">О сервисе</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faq">Вопросы</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacts">Контакты</a></li>
+                </ul>
+                <button class="btn btn--accent" type="button" data-bs-toggle="tooltip" data-bs-title="Поможем подобрать товар за 5 минут">
+                    <i class="bi bi-headset me-2"></i>Консультация
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- OFFCANVAS -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu">
+        <div class="offcanvas-header" style="background:var(--brand);">
+            <h5 class="offcanvas-title text-white">Меню</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="nav flex-column gap-3">
+                <li><a class="nav-link" href="#hero" data-bs-dismiss="offcanvas">Главная</a></li>
+                <li><a class="nav-link" href="#catalog" data-bs-dismiss="offcanvas">Каталог</a></li>
+                <li><a class="nav-link" href="#about" data-bs-dismiss="offcanvas">О сервисе</a></li>
+                <li><a class="nav-link" href="#contacts" data-bs-dismiss="offcanvas">Контакты</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- HERO CAROUSEL -->
+    <section id="hero" class="py-4">
+        <div class="container">
+            <div id="heroCarousel" class="carousel slide hero" data-bs-ride="carousel" data-bs-interval="5000">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                </div>
+                <div class="carousel-inner rounded-4 overflow-hidden">
+                    <div class="carousel-item active">
+                        <div class="hero__slide hero__slide--purple">
+                            <div class="hero__content">
+                                <h1 class="hero__title">1.8 млн товаров в 2 272 магазинах</h1>
+                                <p class="hero__subtitle">Найди, сравни, выбери лучшую цену на электронику.</p>
+                                <a href="#catalog" class="btn btn--accent btn-lg">Перейти к каталогу</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="hero__slide hero__slide--banner" style="background-image:url('img/banner.png');"></div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span></button>
+                <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATALOG (Tabs) -->
+    <section id="catalog" class="catalog py-5">
+        <div class="container">
+            <h2 class="section-title mb-4">Каталог товаров</h2>
+            <ul class="nav nav-pills catalog__tags mb-4" role="tablist">
+                <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-all" type="button">Все</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-phones" type="button">Смартфоны</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-speakers" type="button">Умные колонки</button></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="tab-all">
+                    <div class="row g-4">
+                        <!-- товар 1 -->
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="product-card h-100">
+                                <div class="product-card__top">
+                                    <button class="icon-btn"><i class="bi bi-heart"></i></button>
+                                    <button class="icon-btn"><i class="bi bi-bar-chart"></i></button>
+                                </div>
+                                <div class="product-card__img-wrapper"><img src="img/p1.png" alt="Samsung Galaxy M32"></div>
+                                <div class="product-card__content">
+                                    <h3 class="product-card__name">Samsung Galaxy M32 128GB</h3>
+                                    <p class="product-card__desc">6.4" AMOLED, 6/128 ГБ, 64 Мп, 5000 мА·ч</p>
+                                    <div class="product-card__price-row">
+                                        <span class="price-now">28 990 ₽</span>
+                                        <span class="discount-badge"><i class="bi bi-caret-down-fill"></i> 12%</span>
+                                    </div>
+                                    <div class="product-card__meta">
+                                        <div class="meta-box"><span class="meta-box__label">Рейтинг</span><span class="meta-box__val">⭐ 4.4</span></div>
+                                        <div class="meta-box"><span class="meta-box__label">Отзывы</span><span class="meta-box__val">5 447</span></div>
+                                    </div>
+                                    <button class="btn btn--accent w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-product="Samsung Galaxy M32 128GB">В корзину</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- товар 2 -->
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="product-card h-100">
+                                <div class="product-card__top">
+                                    <button class="icon-btn"><i class="bi bi-heart"></i></button>
+                                    <button class="icon-btn"><i class="bi bi-bar-chart"></i></button>
+                                </div>
+                                <div class="product-card__img-wrapper"><img src="img/p2.png" alt="Яндекс Станция Макс"></div>
+                                <div class="product-card__content">
+                                    <h3 class="product-card__name">Яндекс Станция Макс</h3>
+                                    <p class="product-card__desc">Умная колонка с Zigbee, помощник Алиса</p>
+                                    <div class="product-card__price-row">
+                                        <span class="price-now">19 990 ₽</span>
+                                        <span class="discount-badge"><i class="bi bi-caret-down-fill"></i> 8%</span>
+                                    </div>
+                                    <div class="product-card__meta">
+                                        <div class="meta-box"><span class="meta-box__label">Рейтинг</span><span class="meta-box__val">⭐ 4.7</span></div>
+                                        <div class="meta-box"><span class="meta-box__label">Отзывы</span><span class="meta-box__val">1 203</span></div>
+                                    </div>
+                                    <button class="btn btn--accent w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-product="Яндекс Станция Макс">В корзину</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- товар 3 -->
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="product-card h-100">
+                                <div class="product-card__top">
+                                    <button class="icon-btn"><i class="bi bi-heart"></i></button>
+                                    <button class="icon-btn"><i class="bi bi-bar-chart"></i></button>
+                                </div>
+                                <div class="product-card__img-wrapper"><img src="img/p3.png" alt="Realme C33"></div>
+                                <div class="product-card__content">
+                                    <h3 class="product-card__name">Realme C33 4/128GB</h3>
+                                    <p class="product-card__desc">6.5" IPS, 4/128 ГБ, 50 Мп, чёрный</p>
+                                    <div class="product-card__price-row">
+                                        <span class="price-now">11 990 ₽</span>
+                                        <span class="discount-badge"><i class="bi bi-caret-down-fill"></i> 15%</span>
+                                    </div>
+                                    <div class="product-card__meta">
+                                        <div class="meta-box"><span class="meta-box__label">Рейтинг</span><span class="meta-box__val">⭐ 4.4</span></div>
+                                        <div class="meta-box"><span class="meta-box__label">Отзывы</span><span class="meta-box__val">2 849</span></div>
+                                    </div>
+                                    <button class="btn btn--accent w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-product="Realme C33 4/128GB">В корзину</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- товар 4 -->
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="product-card h-100">
+                                <div class="product-card__top">
+                                    <button class="icon-btn"><i class="bi bi-heart"></i></button>
+                                    <button class="icon-btn"><i class="bi bi-bar-chart"></i></button>
+                                </div>
+                                <div class="product-card__img-wrapper"><img src="img/p4.png" alt="Apple iPhone 13"></div>
+                                <div class="product-card__content">
+                                    <h3 class="product-card__name">Apple iPhone 13 128GB</h3>
+                                    <p class="product-card__desc">6.1" OLED, A15 Bionic, IP68, тёмная ночь</p>
+                                    <div class="product-card__price-row">
+                                        <span class="price-now">69 990 ₽</span>
+                                        <span class="discount-badge"><i class="bi bi-caret-down-fill"></i> 5%</span>
+                                    </div>
+                                    <div class="product-card__meta">
+                                        <div class="meta-box"><span class="meta-box__label">Рейтинг</span><span class="meta-box__val">⭐ 4.9</span></div>
+                                        <div class="meta-box"><span class="meta-box__label">Отзывы</span><span class="meta-box__val">8 421</span></div>
+                                    </div>
+                                    <button class="btn btn--accent w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-product="Apple iPhone 13 128GB">В корзину</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- товар 5 -->
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="product-card h-100">
+                                <div class="product-card__top">
+                                    <button class="icon-btn"><i class="bi bi-heart"></i></button>
+                                    <button class="icon-btn"><i class="bi bi-bar-chart"></i></button>
+                                </div>
+                                <div class="product-card__img-wrapper"><img src="img/p5.png" alt="Samsung Galaxy A54"></div>
+                                <div class="product-card__content">
+                                    <h3 class="product-card__name">Samsung Galaxy A54 5G</h3>
+                                    <p class="product-card__desc">6.4" AMOLED 120 Гц, 8/256 ГБ, 5G</p>
+                                    <div class="product-card__price-row">
+                                        <span class="price-now">34 990 ₽</span>
+                                        <span class="discount-badge"><i class="bi bi-caret-down-fill"></i> 10%</span>
+                                    </div>
+                                    <div class="product-card__meta">
+                                        <div class="meta-box"><span class="meta-box__label">Рейтинг</span><span class="meta-box__val">⭐ 4.6</span></div>
+                                        <div class="meta-box"><span class="meta-box__label">Отзывы</span><span class="meta-box__val">3 310</span></div>
+                                    </div>
+                                    <button class="btn btn--accent w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-product="Samsung Galaxy A54 5G">В корзину</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- товар 6 -->
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="product-card h-100">
+                                <div class="product-card__top">
+                                    <button class="icon-btn"><i class="bi bi-heart"></i></button>
+                                    <button class="icon-btn"><i class="bi bi-bar-chart"></i></button>
+                                </div>
+                                <div class="product-card__img-wrapper"><img src="img/p6.png" alt="Samsung Galaxy M14"></div>
+                                <div class="product-card__content">
+                                    <h3 class="product-card__name">Samsung Galaxy M14 5G</h3>
+                                    <p class="product-card__desc">6.6" PLS LCD, 4/128 ГБ, 6000 мА·ч</p>
+                                    <div class="product-card__price-row">
+                                        <span class="price-now">15 490 ₽</span>
+                                        <span class="discount-badge"><i class="bi bi-caret-down-fill"></i> 9%</span>
+                                    </div>
+                                    <div class="product-card__meta">
+                                        <div class="meta-box"><span class="meta-box__label">Рейтинг</span><span class="meta-box__val">⭐ 4.3</span></div>
+                                        <div class="meta-box"><span class="meta-box__label">Отзывы</span><span class="meta-box__val">1 876</span></div>
+                                    </div>
+                                    <button class="btn btn--accent w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-product="Samsung Galaxy M14 5G">В корзину</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tab-phones">
+                    <div class="row g-4">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="product-card h-100">
+                                <div class="product-card__img-wrapper"><img src="img/p1.png" alt="Samsung Galaxy M32"></div>
+                                <div class="product-card__content">
+                                    <h3 class="product-card__name">Samsung Galaxy M32 128GB</h3>
+                                    <p class="product-card__desc">6.4" AMOLED, 64 Мп</p>
+                                    <div class="product-card__price-row"><span class="price-now">28 990 ₽</span></div>
+                                    <button class="btn btn--accent w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-product="Samsung Galaxy M32 128GB">В корзину</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="product-card h-100">
+                                <div class="product-card__img-wrapper"><img src="img/p4.png" alt="iPhone 13"></div>
+                                <div class="product-card__content">
+                                    <h3 class="product-card__name">Apple iPhone 13 128GB</h3>
+                                    <p class="product-card__desc">6.1" OLED, A15</p>
+                                    <div class="product-card__price-row"><span class="price-now">69 990 ₽</span></div>
+                                    <button class="btn btn--accent w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-product="Apple iPhone 13 128GB">В корзину</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tab-speakers">
+                    <div class="row g-4">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="product-card h-100">
+                                <div class="product-card__img-wrapper"><img src="img/p2.png" alt="Яндекс Станция Макс"></div>
+                                <div class="product-card__content">
+                                    <h3 class="product-card__name">Яндекс Станция Макс</h3>
+                                    <p class="product-card__desc">Умная колонка, Алиса</p>
+                                    <div class="product-card__price-row"><span class="price-now">19 990 ₽</span></div>
+                                    <button class="btn btn--accent w-100" data-bs-toggle="modal" data-bs-target="#orderModal" data-product="Яндекс Станция Макс">В корзину</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT / STATS -->
+    <section id="about" class="about-stats py-5">
+        <div class="container">
+            <h2 class="section-title mb-2">Behoof помогает выбрать</h2>
+            <p class="text-muted mb-4">покупку подходящую именно вам и по оптимальной цене</p>
+            <div class="row g-4">
+                <div class="col-6 col-lg-3"><div class="stats-card h-100"><span class="stats-card__number">1 млн</span><span class="stats-card__desc">товаров в каталоге</span></div></div>
+                <div class="col-6 col-lg-3"><div class="stats-card h-100"><span class="stats-card__number">25 лет</span><span class="stats-card__desc">экспертизы на рынке</span></div></div>
+                <div class="col-6 col-lg-3"><div class="stats-card h-100"><span class="stats-card__number">50</span><span class="stats-card__desc">параметров сравнения</span></div></div>
+                <div class="col-6 col-lg-3"><div class="stats-card h-100"><span class="stats-card__number">25 млн</span><span class="stats-card__desc">отзывов покупателей</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ (Accordion) -->
+    <section id="faq" class="faq py-5">
+        <div class="container">
+            <h2 class="section-title mb-4">Ваши вопросы</h2>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h3 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#f1">Как сравнить товары?</button></h3>
+                    <div id="f1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion"><div class="accordion-body">Добавьте товары в сравнение по иконке с графиком — покажем разницу по 50 параметрам.</div></div>
+                </div>
+                <div class="accordion-item">
+                    <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f2">Откуда берутся цены?</button></h3>
+                    <div id="f2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Мы агрегируем предложения 2 272 магазинов и показываем минимальную цену.</div></div>
+                </div>
+                <div class="accordion-item">
+                    <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f3">Это бесплатно?</button></h3>
+                    <div id="f3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Да, пользование сервисом Behoof бесплатно для покупателей.</div></div>
+                </div>
+                <div class="accordion-item">
+                    <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f4">Можно доверять отзывам?</button></h3>
+                    <div id="f4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Отзывы оставляют подтверждённые покупатели, фейки модерируются.</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEEDBACK (Modal trigger + Toast) -->
+    <section id="feedback" class="feedback py-5">
+        <div class="container">
+            <h2 class="section-title mb-4">Написать в поддержку</h2>
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-5">
+                    <div class="feedback__side">
+                        <p class="lead">Не нашли ответ на вопрос? Напишите нам — поможем выбрать товар и оформить заказ.</p>
+                        <ul class="list-unstyled text-muted">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill me-2" style="color:var(--brand);"></i>Ответим в течение 15 минут</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill me-2" style="color:var(--brand);"></i>Бесплатная консультация</li>
+                            <li><i class="bi bi-check-circle-fill me-2" style="color:var(--brand);"></i>Подбор по параметрам</li>
+                        </ul>
+                        <button class="btn btn--accent mt-2" id="showToastBtn"><i class="bi bi-send me-2"></i>Отправить заявку</button>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="feedback__form-wrapper">
+                        <h3 class="form-title mb-4">Форма обращения</h3>
+                        <form id="feedbackForm">
+                            <div class="mb-3"><input type="text" class="form-control" placeholder="Ваше имя" required></div>
+                            <div class="mb-3"><input type="tel" class="form-control" placeholder="Телефон" required></div>
+                            <div class="mb-3"><input type="email" class="form-control" placeholder="Email"></div>
+                            <div class="mb-3"><textarea class="form-control" rows="4" placeholder="Ваш вопрос"></textarea></div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="agreeCheck" required>
+                                <label class="form-check-label small" for="agreeCheck">Согласие на обработку данных</label>
+                            </div>
+                            <button type="submit" class="btn btn--accent w-100">Отправить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contacts" class="footer py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <a href="#" class="logo text-decoration-none d-inline-block mb-3"><span class="logo__mark">B</span>ehoof</a>
+                    <nav class="footer__nav mt-2">
+                        <a class="footer__link" href="#about">О сервисе</a>
+                        <a class="footer__link" href="#catalog">Каталог</a>
+                        <a class="footer__link" href="#contacts">Контакты</a>
+                    </nav>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer__info-item"><i class="bi bi-geo-alt footer__icon"></i><div><strong>Адрес</strong><br>Москва, ул. Примерная, 1</div></div>
+                    <div class="footer__info-item"><i class="bi bi-envelope footer__icon"></i><span>help@behoof.ru</span></div>
+                </div>
+                <div class="col-lg-4 col-md-6 text-lg-end">
+                    <p class="small mb-2" style="color:#bbb;">Подпишитесь на скидки</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Ваш email">
+                        <button class="btn btn--accent" type="button" id="subscribeBtn">OK</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color:#333;">
+            <p class="footer__copyright text-center mb-0">© Behoof, 2023. Поиск и сравнение электроники.</p>
+        </div>
+    </footer>
+
+    <!-- MODAL -->
+    <div class="modal fade" id="orderModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background:var(--brand);">
+                    <h5 class="modal-title text-white">Оформить заказ</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="orderForm">
+                        <div class="mb-3"><label class="form-label">Товар</label><input type="text" class="form-control" id="orderProduct" readonly></div>
+                        <div class="mb-3"><label class="form-label">Ваше имя</label><input type="text" class="form-control" placeholder="Иван Иванов" required></div>
+                        <div class="mb-3"><label class="form-label">Телефон</label><input type="tel" class="form-control" placeholder="+7 (___) ___-__-__" required></div>
+                        <button type="submit" class="btn btn--accent w-100">Оформить заказ</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index:9999;">
+        <div id="liveToast" class="toast" role="alert">
+            <div class="toast-header" style="background:var(--brand);">
+                <i class="bi bi-check-circle-fill me-2 text-white"></i>
+                <strong class="me-auto text-white">Behoof</strong>
+                <small class="text-white">только что</small>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">Заявка успешно отправлена!</div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

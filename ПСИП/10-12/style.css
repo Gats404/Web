@@ -1,0 +1,83 @@
+:root {
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #2c3e50;
+    --accent: #c0392b;
+    --border: #e9ecef;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding-bottom: 40px;
+}
+
+.container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+.header {
+    background: #1a1a1a;
+    border-bottom: 3px solid var(--accent);
+    padding: 20px 0;
+    margin-bottom: 30px;
+}
+.header__inner { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; color: #fff; }
+.student-name { font-size: 14px; color: #e8a0a8; font-weight: 500; }
+
+.main-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 25px;
+    transition: transform 0.2s ease;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,.05); }
+.card--full { grid-column: 1 / -1; }
+
+h2 { font-size: 18px; margin-bottom: 8px; color: var(--text); }
+.desc { font-size: 13px; color: #95a5a6; margin-bottom: 20px; min-height: 40px; }
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+    color: #fff;
+    transition: opacity 0.2s;
+}
+.btn:hover { opacity: 0.9; }
+.btn--primary { background: var(--accent); }
+.btn--secondary { background: #7b241c; }
+.btn--accent { background: #e67e22; }
+.btn--dark { background: #34495e; }
+
+.result-box {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f1f3f5;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: monospace;
+    white-space: pre-wrap;
+    min-height: 50px;
+    border-left: 3px solid var(--accent);
+}
+.result-box--scroll { max-height: 150px; overflow-y: auto; }
+
+@media (max-width: 600px) {
+    .header__inner { flex-direction: column; gap: 10px; text-align: center; }
+    .main-grid { grid-template-columns: 1fr; }
+}

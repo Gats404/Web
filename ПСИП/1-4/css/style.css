@@ -1,0 +1,120 @@
+/* ======================
+   БАЗОВЫЕ НАСТРОЙКИ — тема Behoof (электроника)
+   ====================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #2a2f45;
+    background-color: #f4f4f7;
+}
+
+a { color: #7000ff; text-decoration: none; transition: color 0.3s ease; }
+a:hover { color: #5a00cc; text-decoration: underline; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* ======================
+   ШАПКА И МЕНЮ
+   ====================== */
+.header {
+    background: #fff;
+    border-bottom: 1px solid #ececf0;
+    box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.header__inner { display: flex; align-items: center; justify-content: space-between; padding: 15px 0; }
+.logo { font-weight: 800; font-size: 26px; color: #2a2f45; display: flex; align-items: center; }
+.logo__mark { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px;
+              background: #7000ff; color: #fff; border-radius: 8px; margin-right: 3px; font-weight: 800; }
+.nav { display: flex; gap: 20px; flex-wrap: wrap; }
+.nav__link { font-size: 15px; font-weight: 600; color: #2a2f45; padding: 5px 0; position: relative; }
+.nav__link:hover { color: #7000ff; text-decoration: none; }
+.nav__link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+                    background-color: #7000ff; transition: width 0.4s ease; }
+.nav__link:hover::after { width: 100%; }
+.nav__link--active { color: #7000ff; }
+.nav__link--active::after { width: 100%; }
+
+/* ======================
+   РАЗДЕЛЫ
+   ====================== */
+main { padding: 20px 0; }
+.section {
+    margin-bottom: 30px;
+    padding: 25px;
+    background-color: #fff;
+    border: 1px solid #ececf0;
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.section:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(112,0,255,.1); }
+.section h2 { margin-top: 0; color: #2a2f45; border-bottom: 2px solid #7000ff; padding-bottom: 10px; font-size: 26px; }
+.section h3 { color: #7000ff; }
+.section img { max-width: 100%; height: auto; border-radius: 10px; margin: 0 20px 15px 0;
+               float: left; background: #f4f4f7; padding: 10px; }
+
+/* ======================
+   ТАБЛИЦА
+   ====================== */
+table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 16px; }
+table caption { font-size: 18px; font-weight: 600; margin-bottom: 10px; color: #7000ff; }
+table th { background-color: #7000ff; color: #fff; padding: 12px; text-align: left; }
+table td { padding: 10px 12px; border-bottom: 1px solid #ececf0; }
+table tr:hover { background-color: #f7f3ff; }
+
+/* ======================
+   СПИСКИ
+   ====================== */
+.section ul, .section ol { padding-left: 25px; }
+.section li { margin-bottom: 8px; }
+
+/* ======================
+   МЕДИА
+   ====================== */
+audio { width: 100%; margin: 15px 0; }
+iframe { max-width: 100%; border-radius: 12px; border: none; box-shadow: 0 4px 14px rgba(0,0,0,.1); margin: 15px 0; }
+
+/* ======================
+   ФОРМА
+   ====================== */
+form { max-width: 650px; margin: 0 auto; }
+fieldset { border: 2px solid #7000ff; border-radius: 12px; padding: 20px; background-color: #faf8ff; }
+legend { font-size: 18px; font-weight: 700; color: #7000ff; padding: 0 10px; }
+label { font-weight: 500; color: #2a2f45; display: block; margin-bottom: 5px; }
+input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+    width: 100%; padding: 10px 12px; border: 2px solid #e3e3ea; border-radius: 8px;
+    font-size: 15px; background-color: #fff;
+}
+input:focus, select:focus, textarea:focus {
+    outline: none; border-color: #7000ff; box-shadow: 0 0 0 3px rgba(112,0,255,.12);
+}
+input[type="checkbox"] { width: 18px; height: 18px; margin-right: 8px; accent-color: #7000ff; }
+button { background-color: #ff5151; color: #fff; border: none; padding: 12px 30px; font-size: 15px;
+         font-weight: 600; border-radius: 10px; cursor: pointer; transition: background-color 0.3s, transform 0.2s;
+         margin-right: 10px; }
+button:hover { background-color: #e94545; transform: scale(1.04); }
+button[type="reset"] { background-color: #b5b9c6; }
+button[type="reset"]:hover { background-color: #9a9eb0; }
+
+/* Ссылки «Наверх» */
+.section p:last-child a[href="#top"] {
+    display: inline-block; margin-top: 15px; padding: 5px 15px; background-color: #f4f4f7;
+    border-radius: 20px; font-size: 14px;
+}
+.section p:last-child a[href="#top"]:hover { background-color: #7000ff; color: #fff; text-decoration: none; }
+
+/* ======================
+   ПОДВАЛ
+   ====================== */
+.footer { border-top: 3px solid #7000ff; background: #2a2f45; padding: 20px 0; font-size: 14px;
+          color: #c8ccd8; text-align: center; margin-top: 30px; }
+.footer p { margin: 5px 0; }
+.footer a { color: #ff8a8a; }
+.footer a:hover { color: #fff; }

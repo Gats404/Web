@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЛР 10-12 — JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Способ 1: скрипт в HEAD (вызывается по кнопке) -->
+    <script>
+        function showDateTask() {
+            const d = new Date();
+            const days = ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'];
+            const res = `Сегодня ${days[d.getDay()]}, ${d.toLocaleDateString('ru-RU')}`;
+            document.getElementById('res-1').innerText = res;
+            alert('Задание 1: ' + res);
+        }
+    </script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header__inner">
+            <h1 class="logo">JS LAB</h1>
+            <span class="student-name">Серёга · Behoof</span>
+        </div>
+    </header>
+
+    <main class="container main-grid">
+
+        <section class="card">
+            <h2>1. Объект Date</h2>
+            <p class="desc">Скрипт в &lt;head&gt;. Вывод текущего дня недели.</p>
+            <button onclick="showDateTask()" class="btn btn--primary">Показать день</button>
+            <div id="res-1" class="result-box"></div>
+        </section>
+
+        <section class="card">
+            <h2>2. Цикл for</h2>
+            <p class="desc">Вывод имени 35 раз в цикле.</p>
+            <button id="btn-task2" class="btn btn--secondary">Запустить цикл</button>
+            <div id="res-2" class="result-box result-box--scroll"></div>
+        </section>
+
+        <section class="card">
+            <h2>3. Массив (Array)</h2>
+            <p class="desc">Сумма чётных элементов массива.</p>
+            <button id="btn-task3" class="btn btn--accent">Найти сумму</button>
+            <div id="res-3" class="result-box"></div>
+        </section>
+
+        <section class="card">
+            <h2>4. Объект Math</h2>
+            <p class="desc">Расчёт формулы через объект Math.</p>
+            <button id="btn-task4" class="btn btn--dark">Рассчитать</button>
+            <div id="res-4" class="result-box"></div>
+        </section>
+
+        <section class="card card--full">
+            <h2>5. Строки (String)</h2>
+            <p class="desc">Длина строки, вставка пробела, замена подстроки.</p>
+            <button id="btn-task5" class="btn btn--primary">Обработать строку</button>
+            <div id="res-5" class="result-box"></div>
+        </section>
+
+    </main>
+
+    <!-- Способ 2: внешний скрипт в конце BODY -->
+    <script src="script.js"></script>
+</body>
+</html>
