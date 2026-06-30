@@ -1,0 +1,68 @@
+<?php
+// catalog_logic.php — логика каталога мыла (PDO + MySQL)
+// Поиск, фильтр по категориям, сортировка и пагинация.
+
+// 1. НАСТРОЙКИ ПОДКЛЮЧЕНИЯ К БД
+$host    = '127.0.0.1';      // при необходимости укажите порт, напр. 127.0.0.1:3307
+$db      = 'shop_db';
+$user    = 'root';
+$pass    = '';               // в OpenServer/XAMPP по умолчанию пусто
+$charset = 'utf8mb4';
+
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => true, // надёжнее работает с LIMIT/OFFSET
+];
+
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (\PDOException $e) {
+    die("<div style='color:#fff;background:#7000ff;padding:20px;'>Ошибка БД: "
+        . htmlspecialchars($e->getMessage())
+        . "<br>Импортируйте shop_db.sql и проверьте настройки подключения.</div>");
+}
+
+// 2. ПАРАМЕТРЫ ЗАПРОСА (с валидацией)
+$page   = isset($_GET['page'])   ? max(1, (int)$_GET['page'])     : 1;
+$limit  = 6;
+$offset = ($page - 1) * $limit;
+
+$search   = isset($_GET['search'])   ? trim($_GET['search'])   : '';
+$category = isset($_GET['category']) ? $_GET['category']        : 'all';
+$sort     = isset($_GET['sort'])     ? $_GET['sort']            : 'id';
+
+// Белый список полей сортировки — защита от SQL-инъекций
+$allowedSorts = ['id', 'price', 'name'];
+if (!in_array($sort, $allowedSorts, true)) {
+    $sort = 'id';
+}
+
+// 3. УСЛОВИЯ WHERE
+$whereClauses = [];
+$params = [];
+
+if ($category !== 'all') {
+    $whereClauses[] = "category = :cat";
+    $params[':cat'] = $category;
+}
+if ($search !== '') {
+    $whereClauses[] = "(name LIKE :srch OR description LIKE :srch)";
+    $params[':srch'] = "%$search%";
+}
+$whereSQL = $whereClauses ? "WHERE " . implode(" AND ", $whereClauses) : "";
+
+// 4. ПОДСЧЁТ ОБЩЕГО КОЛИЧЕСТВА
+$countSql = "SELECT COUNT(*) FROM products $whereSQL";
+$stmtCount = $pdo->prepare($countSql);
+$stmtCount->execute($params);
+$totalItems = (int)$stmtCount->fetchColumn();
+$totalPages = (int)ceil($totalItems / $limit);
+
+// 5. ОСНОВНОЙ ЗАПРОС С СОРТИРОВКОЙ И ПАГИНАЦИЕЙ
+$sql = "SELECT * FROM products $whereSQL ORDER BY $sort ASC LIMIT $limit OFFSET $offset";
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
+$products = $stmt->fetchAll();
+?>

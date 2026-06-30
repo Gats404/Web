@@ -1,0 +1,12 @@
+{
+    "admin": {
+        "password_hash": "$2b$10$9.zl.dWCCbXDciR92kFLiu5.mvCQY3u6nPTNepA5/H53NkoZwsD4S",
+        "role": "admin",
+        "name": "Администратор"
+    },
+    "manager": {
+        "password_hash": "$2b$10$k3dR1hovIVTCF7tnWJjJY.CL.jX0DNdfzPwW5RFiSstX1fjN5lhki",
+        "role": "user",
+        "name": "Менеджер"
+    }
+}
