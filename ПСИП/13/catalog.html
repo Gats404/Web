@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог с фильтрами (location) · ЛР 13 · Behoof</title>
+    <link rel="stylesheet" href="../assets/behoof.css">
+    <style>
+        .layout { display: grid; grid-template-columns: 270px 1fr; gap: 22px; align-items: start; margin: 24px 0; }
+        .filters { background: #fff; border-radius: 16px; padding: 18px; box-shadow: 0 2px 10px rgba(0,0,0,.05);
+                   display: flex; flex-direction: column; gap: 12px; position: sticky; top: 80px; }
+        .filters h3 { font-size: 16px; }
+        .chips { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; min-height: 26px; }
+        .chips a { background: var(--brand); color: #fff; }
+        .chips a:hover { background: var(--accent); text-decoration: none; }
+        .summary { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+        .summary h1 { font-size: 1.5rem; }
+        .p-card.is-out { opacity: .55; }
+        .empty { background: #fff; border-radius: 16px; padding: 30px; text-align: center; color: var(--muted); }
+        details { margin-top: 16px; }
+        summary { cursor: pointer; font-weight: 700; color: var(--brand); }
+        @media (max-width: 800px) { .layout { grid-template-columns: 1fr; } .filters { position: static; } }
+    </style>
+</head>
+<body>
+
+<header class="lab-header">
+    <div class="container lab-header__inner">
+        <a href="../index.html" class="logo"><span class="logo__mark">B</span>ehoof</a>
+        <span class="lab-header__title">ЛР 13 · Пример 7 — location.search</span>
+        <nav class="lab-header__nav">
+            <a href="catalog.html">Сбросить фильтры</a>
+            <a href="index.html#location">← К примерам BOM</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container layout">
+    <!-- Форма отправляется методом GET на эту же страницу: значения полей превращаются в ?параметры -->
+    <form class="filters" id="filters" action="catalog.html" method="get">
+        <h3>Фильтры</h3>
+        <label class="field"><span>Поиск</span><input type="search" name="q" placeholder="например, galaxy"></label>
+        <label class="field"><span>Категория</span>
+            <select name="category">
+                <option value="">Все</option>
+                <option value="smartphone">Смартфоны</option>
+                <option value="speaker">Умные колонки</option>
+            </select>
+        </label>
+        <label class="field"><span>Бренд</span><select name="brand" id="brand-select"><option value="">Все</option></select></label>
+        <div class="row">
+            <label class="field" style="flex:1"><span>Цена от</span><input type="number" name="minPrice" min="0" step="1000"></label>
+            <label class="field" style="flex:1"><span>до</span><input type="number" name="maxPrice" min="0" step="1000"></label>
+        </div>
+        <label class="field"><span>Сортировка</span>
+            <select name="sort">
+                <option value="">По умолчанию</option>
+                <option value="price-asc">Сначала дешёвые</option>
+                <option value="price-desc">Сначала дорогие</option>
+                <option value="rating">По рейтингу</option>
+                <option value="discount">По скидке</option>
+            </select>
+        </label>
+        <label><input type="checkbox" name="inStock" value="1"> Только в наличии</label>
+        <button class="btn">Применить</button>
+    </form>
+
+    <section>
+        <div class="summary">
+            <h1 id="title">Каталог</h1>
+            <span class="tag" id="count"></span>
+        </div>
+        <div class="chips" id="chips"></div>
+        <div class="products" id="grid"></div>
+        <details open>
+            <summary>Что прочитано из адреса страницы</summary>
+            <table class="data" id="params" style="margin-top:10px"></table>
+        </details>
+    </section>
+</main>
+
+<script src="../assets/data/products.js"></script>
+<script src="../assets/behoof.js"></script>
+<script src="js/catalog.js"></script>
+</body>
+</html>

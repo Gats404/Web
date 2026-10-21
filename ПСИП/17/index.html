@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЛР 17 — ООП в JavaScript: магазин на классах · Behoof</title>
+    <link rel="stylesheet" href="../assets/behoof.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="lab-header">
+    <div class="container lab-header__inner">
+        <a href="../index.html" class="logo"><span class="logo__mark">B</span>ehoof</a>
+        <span class="lab-header__title">ЛР 17 · ООП</span>
+        <nav class="lab-header__nav">
+            <a href="#shop">Магазин на классах</a>
+            <a href="#uml">Схема классов</a>
+            <a href="#principles">Принципы ООП</a>
+            <a href="README.md">README</a>
+            <a href="../index.html">← Все работы</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section class="lab-hero">
+        <h1>ООП в JavaScript: магазин на классах</h1>
+        <p>Каталог и корзина ниже целиком построены на классах <code>Product</code>, <code>Smartphone</code>, <code>Speaker</code>,
+           <code>Catalog</code>, <code>Cart</code> и <code>Order</code> из файла <code>js/models.js</code>. Эти же классы
+           используются в каталоге с корзиной ЛР 19–20.</p>
+    </section>
+
+    <!-- ================= МАГАЗИН ================= -->
+    <section class="section" id="shop">
+        <h2 class="section__title">Магазин на классах</h2>
+        <div class="shop">
+            <div>
+                <div class="toolbar">
+                    <input type="search" id="q" placeholder="Поиск: catalog.query({ text })">
+                    <select id="cat">
+                        <option value="">Все классы</option>
+                        <option value="smartphone">Smartphone</option>
+                        <option value="speaker">Speaker</option>
+                    </select>
+                    <select id="sort">
+                        <option value="">Без сортировки</option>
+                        <option value="price">Product.compareByPrice</option>
+                        <option value="rating">По рейтингу</option>
+                    </select>
+                </div>
+                <p class="hint" id="found"></p>
+                <div class="products" id="grid"></div>
+            </div>
+            <aside class="demo cart" id="cart">
+                <h3><small>new Cart()</small>Корзина</h3>
+                <ul class="cart__list" id="cart-list"></ul>
+                <div class="cart__total"><span>cart.count = <b id="cart-count">0</b></span><span>cart.total = <b id="cart-total">0 ₽</b></span></div>
+                <div class="row">
+                    <button class="btn btn--green" id="checkout">Оформить заказ</button>
+                    <button class="btn btn--ghost" id="clear">cart.clear()</button>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <!-- ================= СХЕМА КЛАССОВ ================= -->
+    <section class="section" id="uml">
+        <h2 class="section__title">Схема классов</h2>
+        <p class="section__lead">Наследование — сплошные стрелки, использование — пунктир. <span class="lock">#</span> — приватное, <span class="lock">_</span> — защищённое, <span class="lock">static</span> — статическое.</p>
+        <div class="uml">
+            <div class="uml__col">
+                <div class="uml-box uml-box--base">
+                    <b>Product</b>
+                    <ul><li><span class="lock">static #</span>created</li><li><span class="lock">#</span>price, <span class="lock">#</span>discount</li><li><span class="lock">_</span>category</li><li>id, name, brand, rating, inStock</li></ul>
+                    <ul><li>get/set price, discount</li><li>get finalPrice</li><li>getInfo(), badges(), render()</li><li><span class="lock">static</span> fromJSON(), format(), compareByPrice()</li></ul>
+                </div>
+                <div class="uml__arrows"><span>extends ▲</span><span>extends ▲</span></div>
+                <div class="uml__row">
+                    <div class="uml-box"><b>Smartphone</b><ul><li>screen, storage, camera, has5G</li></ul><ul><li>getInfo() ⟲</li><li>badges() ⟲ super</li></ul></div>
+                    <div class="uml-box"><b>Speaker</b><ul><li>assistant, power, smartHome</li></ul><ul><li>getInfo() ⟲</li><li>badges() ⟲ super</li></ul></div>
+                </div>
+            </div>
+            <div class="uml__col">
+                <div class="uml-box"><b>Catalog</b><ul><li><span class="lock">#</span>products: Product[]</li></ul><ul><li>get all, get size</li><li>getById(), query()</li><li><span class="lock">static</span> fromJSON(), async load()</li></ul></div>
+                <div class="uml__dash">uses ⇢ Product</div>
+                <div class="uml-box"><b>Cart</b><ul><li><span class="lock">#</span>items: Map, <span class="lock">#</span>listeners</li></ul><ul><li>add(), setQty(), remove(), clear()</li><li>get items, count, total</li><li>onChange(), <span class="lock">#</span>emit()</li><li><span class="lock">static</span> fromJSON()</li></ul></div>
+                <div class="uml__dash">uses ⇢ Cart</div>
+                <div class="uml-box"><b>Order</b><ul><li><span class="lock">static #</span>lastNumber</li><li>number, date, customer, lines, total</li></ul><ul><li>get summary</li></ul></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ПРИНЦИПЫ ================= -->
+    <section class="section" id="principles">
+        <h2 class="section__title">Принципы ООП в коде</h2>
+        <p class="section__lead">Каждый пример — настоящий вызов классов из <code>models.js</code>; код слева, результат справа.</p>
+        <div id="demos"></div>
+    </section>
+
+    <p class="footer-note">ПССИП · JavaScript · ЛР 17 — объектно-ориентированное программирование · тема «Behoof»</p>
+</main>
+
+<dialog class="modal" id="order-dialog">
+    <h3>Заказ оформлен</h3>
+    <div class="out" id="order-out"></div>
+    <form method="dialog" class="row" style="margin-top:14px"><button class="btn">OK</button></form>
+</dialog>
+<div class="toast-box" id="toasts"></div>
+
+<script src="../assets/data/products.js"></script>
+<script src="../assets/behoof.js"></script>
+<script src="js/models.js"></script>
+<script src="js/shop.js"></script>
+<script src="js/principles.js"></script>
+</body>
+</html>

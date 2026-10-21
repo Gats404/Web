@@ -1,0 +1,26 @@
+{
+  "name": "behoof-lab12",
+  "version": "1.0.0",
+  "description": "ЛР12: работа с файлами и директориями в Node.js — модуль fs (sync, callback, promise), path, обработка ошибок",
+  "main": "task1-promise.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "task1:sync": "node task1-sync.js",
+    "task1:callback": "node task1-callback.js",
+    "task1:promise": "node task1-promise.js",
+    "task1:compare": "node task1-compare.js",
+    "task1": "node task1-sync.js && node task1-callback.js && node task1-promise.js",
+    "task2": "node task2-analyze.js",
+    "task3": "node task3-meta.js data/text.txt",
+    "task4": "node task4-fileops.js",
+    "task5": "node task5-dirs.js",
+    "task6": "node task8-errors.js",
+    "all": "npm run task1 && npm run task2 && npm run task3 && npm run task4 && npm run task5 && npm run task6"
+  },
+  "keywords": ["nodejs", "fs", "path", "files", "behoof"],
+  "author": "Серега",
+  "license": "ISC"
+}

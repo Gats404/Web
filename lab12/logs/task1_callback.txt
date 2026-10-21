@@ -1,0 +1,11 @@
+PS C:\...\web\lab12> node task1-callback.js
+=== Callback API: fs.readFile / fs.writeFile ===
+Операции запущены, синхронный код закончился — ждём колбэки...
+callback: input.txt: 2.32ms
+  input.txt → output-callback.txt (213 симв.)
+  callback: input2.txt: 1.347ms
+  callback: input1.txt: 1.734ms
+  callback: input3.txt: 1.716ms
+callback: 3 файла в цикле: 1.956ms
+Все колбэки отработали.
+[код завершения: 0]

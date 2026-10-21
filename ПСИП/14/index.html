@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ЛР 14 — объектная модель документа (DOM) на примере витрины Behoof">
+    <title>ЛР 14 — объектная модель документа (DOM) · Behoof</title>
+    <link rel="stylesheet" href="../assets/behoof.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a name="top"></a>
+
+<header class="lab-header">
+    <div class="container lab-header__inner">
+        <a href="../index.html" class="logo"><span class="logo__mark">B</span>ehoof</a>
+        <span class="lab-header__title">ЛР 14 · DOM</span>
+        <nav class="lab-header__nav">
+            <a href="#doc">document</a>
+            <a href="#search">Поиск</a>
+            <a href="#nodes">Навигация</a>
+            <a href="#edit">Создание и атрибуты</a>
+            <a href="#styles">Стили</a>
+            <a href="../index.html">← Все работы</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="lab-hero">
+        <h1>Объектная модель документа (DOM)</h1>
+        <p>Браузер превращает HTML в дерево объектов-узлов. JavaScript находит узлы, переходит между ними,
+           создаёт и удаляет элементы, меняет атрибуты и стили — страница перерисовывается без перезагрузки.</p>
+    </section>
+
+    <!-- ================= ВИТРИНА ДЛЯ ОПЫТОВ ================= -->
+    <a name="showcase"></a>
+    <section class="section">
+        <h2 class="section__title">Витрина для опытов</h2>
+        <p class="section__lead">Обычная HTML-разметка: с ней работают все примеры ниже (поиск, навигация, коллекции).</p>
+        <form class="sort-bar" name="sortForm">
+            Сортировать:
+            <label><input type="radio" name="sort" value="price" checked> по цене</label>
+            <label><input type="radio" name="sort" value="rating"> по рейтингу</label>
+            <label><input type="radio" name="sort" value="discount"> по скидке</label>
+        </form>
+        <div class="products" id="showcase">
+            <article class="p-card" id="card-1" data-category="smartphone" data-price="28990">
+                <!-- карточка товара -->
+                <div class="p-card__img"><img src="../assets/img/p1.png" alt="Samsung Galaxy M32"></div>
+                <span class="p-card__badge">−12%</span>
+                <h4 class="p-card__title">Samsung Galaxy M32</h4>
+                <p class="p-card__specs">6.4" AMOLED · 64 Мп</p>
+                <div class="p-card__price" id="price-1">25 511 ₽</div>
+                <a href="../13/catalog.html?brand=Samsung" class="p-card__link">Подробнее</a>
+            </article>
+            <article class="p-card" id="card-2" data-category="speaker" data-price="19990">
+                <!-- карточка товара -->
+                <div class="p-card__img"><img src="../assets/img/p2.png" alt="Яндекс Станция Макс"></div>
+                <span class="p-card__badge">−8%</span>
+                <h4 class="p-card__title">Яндекс Станция Макс</h4>
+                <p class="p-card__specs">Zigbee · Алиса</p>
+                <div class="p-card__price" id="price-2">18 391 ₽</div>
+                <a href="../13/catalog.html?category=speaker" class="p-card__link">Подробнее</a>
+            </article>
+            <article class="p-card" id="card-3" data-category="smartphone" data-price="69990">
+                <!-- карточка товара -->
+                <div class="p-card__img"><img src="../assets/img/p4.png" alt="Apple iPhone 13"></div>
+                <span class="p-card__badge">−5%</span>
+                <h4 class="p-card__title">Apple iPhone 13</h4>
+                <p class="p-card__specs">6.1" OLED · A15 Bionic</p>
+                <div class="p-card__price" id="price-3">66 491 ₽</div>
+                <a href="../13/catalog.html?brand=Apple" class="p-card__link">Подробнее</a>
+            </article>
+            <article class="p-card" id="card-4" data-category="smartphone" data-price="11990">
+                <!-- карточка товара -->
+                <div class="p-card__img"><img src="../assets/img/p3.png" alt="Realme C33"></div>
+                <span class="p-card__badge">−15%</span>
+                <h4 class="p-card__title">Realme C33</h4>
+                <p class="p-card__specs">6.5" IPS · 50 Мп</p>
+                <div class="p-card__price" id="price-4">10 192 ₽</div>
+                <a href="../13/catalog.html?brand=Realme" class="p-card__link">Подробнее</a>
+            </article>
+        </div>
+    </section>
+
+    <!-- ================= 1. DOCUMENT ================= -->
+    <a name="doc-anchor"></a>
+    <section class="section" id="doc">
+        <h2 class="section__title">1. Объект <span>document</span></h2>
+        <p class="section__lead">Корень DOM-дерева и точка входа ко всем элементам страницы.</p>
+        <div class="demo-grid">
+            <article class="demo">
+                <h3><small>Пример 1.1</small>Свойства document</h3>
+                <table class="data" id="doc-props"></table>
+                <div class="row">
+                    <button class="btn" id="doc-title">Изменить document.title</button>
+                    <button class="btn btn--ghost" id="doc-title-reset">Вернуть</button>
+                </div>
+            </article>
+            <article class="demo">
+                <h3><small>Пример 1.2</small>Коллекции links, anchors, images, forms</h3>
+                <p class="hint">Готовые «живые» коллекции элементов документа.</p>
+                <div class="row">
+                    <button class="btn" id="doc-links">document.links</button>
+                    <button class="btn" id="doc-anchors">document.anchors</button>
+                    <button class="btn" id="doc-images">document.images</button>
+                    <button class="btn btn--ghost" id="doc-forms">document.forms</button>
+                </div>
+                <div class="out" id="doc-out"></div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ================= 2. ПОИСК ================= -->
+    <section class="section" id="search">
+        <h2 class="section__title">2. Поиск элементов</h2>
+        <p class="section__lead">Найденные элементы подсвечиваются на витрине.</p>
+        <div class="demo-grid">
+            <article class="demo">
+                <h3><small>Пример 2.1</small>Методы поиска</h3>
+                <div class="method-list" id="search-methods">
+                    <button data-m="id">getElementById('card-2')</button>
+                    <button data-m="class">getElementsByClassName('p-card__price')</button>
+                    <button data-m="tag">getElementsByTagName('img')</button>
+                    <button data-m="name">getElementsByName('sort')</button>
+                    <button data-m="qs">querySelector('.p-card__badge')</button>
+                    <button data-m="qsa">querySelectorAll('[data-category="smartphone"]')</button>
+                    <button data-m="closest">img.closest('.p-card')</button>
+                </div>
+                <div class="out" id="search-out"></div>
+            </article>
+            <article class="demo">
+                <h3><small>Пример 2.2</small>Свой CSS-селектор</h3>
+                <p class="hint">Введите любой селектор — он выполнится через <code>querySelectorAll</code> внутри витрины.</p>
+                <div class="row">
+                    <input type="text" id="sel-input" value=".p-card[data-price] h4" style="flex:1">
+                    <button class="btn" id="sel-run">Найти</button>
+                </div>
+                <div class="presets" id="sel-presets">
+                    <button class="tag" data-sel="article:nth-child(odd)">article:nth-child(odd)</button>
+                    <button class="tag" data-sel="a[href*='Apple']">a[href*='Apple']</button>
+                    <button class="tag" data-sel=".p-card:has(img[alt*='Samsung']) .p-card__price">:has(…)</button>
+                </div>
+                <div class="out" id="sel-out"></div>
+            </article>
+            <article class="demo">
+                <h3><small>Пример 2.3</small>Живая и статичная коллекции</h3>
+                <p class="hint"><code>getElementsByClassName</code> возвращает живую HTMLCollection,
+                   <code>querySelectorAll</code> — статичный NodeList (снимок на момент вызова).</p>
+                <div class="row">
+                    <button class="btn" id="live-add">Добавить карточку</button>
+                    <button class="btn btn--ghost" id="live-remove">Убрать добавленные</button>
+                </div>
+                <div class="out" id="live-out"></div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ================= 3. NODE: НАВИГАЦИЯ ================= -->
+    <section class="section" id="nodes">
+        <h2 class="section__title">3. Объект <span>Node</span>. Навигация по DOM</h2>
+        <p class="section__lead">Родитель, потомки, братья. Типы узлов: 1 — элемент, 3 — текст, 8 — комментарий.</p>
+        <div class="demo-grid">
+            <article class="demo demo--wide">
+                <h3><small>Пример 3.1</small>Дерево узлов карточки (HDOM)</h3>
+                <div class="row">
+                    <select id="tree-card">
+                        <option value="card-1">#card-1 Samsung</option>
+                        <option value="card-2">#card-2 Яндекс</option>
+                    </select>
+                    <label><input type="checkbox" id="tree-ws"> показать пробельные #text</label>
+                </div>
+                <div class="tree" id="tree"></div>
+            </article>
+            <article class="demo">
+                <h3><small>Пример 3.2</small>Навигатор по узлам</h3>
+                <p class="hint">Текущий узел обведён на витрине. Начало — <code>#card-3</code>.</p>
+                <div class="nav-pad">
+                    <button class="btn btn--ghost" data-go="parentElement">↑ parentElement</button>
+                    <button class="btn btn--ghost" data-go="previousElementSibling">← previousElementSibling</button>
+                    <button class="btn btn--ghost" data-go="nextElementSibling">nextElementSibling →</button>
+                    <button class="btn btn--ghost" data-go="firstElementChild">↓ firstElementChild</button>
+                    <button class="btn btn--ghost" data-go="lastElementChild">↓ lastElementChild</button>
+                    <button class="btn btn--accent" data-go="reset">сброс</button>
+                </div>
+                <table class="data" id="node-info"></table>
+            </article>
+            <article class="demo">
+                <h3><small>Пример 3.3</small>Прямое и последовательное обращение</h3>
+                <p class="hint">К цене iPhone можно прийти напрямую по id или шагами по дереву.</p>
+                <button class="btn" id="access-run">Сравнить два способа</button>
+                <div class="out" id="access-out"></div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ================= 4. СОЗДАНИЕ И АТРИБУТЫ ================= -->
+    <section class="section" id="edit">
+        <h2 class="section__title">4. Создание, добавление, замена, удаление. Атрибуты</h2>
+        <p class="section__lead">«Моя витрина» собирается из элементов, созданных скриптом.</p>
+        <div class="demo-grid">
+            <article class="demo">
+                <h3><small>Пример 4.1</small>Конструктор карточки</h3>
+                <form class="builder" id="builder">
+                    <label class="field"><span>Название</span><input type="text" name="title" value="Xiaomi Redmi 10C" required></label>
+                    <div class="row">
+                        <label class="field" style="flex:1"><span>Цена, ₽</span><input type="number" name="price" value="9990" min="1"></label>
+                        <label class="field" style="flex:1"><span>Скидка, %</span><input type="number" name="discount" value="18" min="0" max="90"></label>
+                    </div>
+                    <label class="field"><span>Картинка</span>
+                        <select name="image">
+                            <option value="p1.png">p1 — Samsung</option><option value="p2.png">p2 — колонка</option>
+                            <option value="p3.png">p3 — Realme</option><option value="p4.png">p4 — iPhone</option>
+                            <option value="p5.png">p5 — Galaxy A</option><option value="p6.png">p6 — Galaxy M</option>
+                        </select>
+                    </label>
+                    <div class="row">
+                        <button class="btn" data-place="append">append()</button>
+                        <button class="btn" data-place="prepend">prepend()</button>
+                        <button class="btn btn--ghost" data-place="clone">cloneNode(true)</button>
+                    </div>
+                </form>
+            </article>
+            <article class="demo demo--wide">
+                <h3><small>Пример 4.2</small>Моя витрина: замена и удаление</h3>
+                <p class="hint">Кнопки на карточках: <code>replaceWith()</code> — заменить на «Продано», <code>remove()</code> — удалить.
+                   Клик по карточке выбирает её для примера 4.3.</p>
+                <div class="products" id="my-shelf"></div>
+                <div class="row">
+                    <button class="btn btn--ghost" id="shelf-clear">Очистить (removeChild в цикле)</button>
+                    <span class="hint" id="shelf-count"></span>
+                </div>
+            </article>
+            <article class="demo demo--wide">
+                <h3><small>Пример 4.3</small>Управление атрибутами</h3>
+                <div class="attr-layout">
+                    <div>
+                        <p class="hint">Выбрана карточка: <b id="attr-target">—</b></p>
+                        <div class="row">
+                            <button class="btn btn--sm" id="attr-hit">setAttribute('data-hit', 'true')</button>
+                            <button class="btn btn--sm btn--ghost" id="attr-unhit">removeAttribute('data-hit')</button>
+                            <button class="btn btn--sm btn--ghost" id="attr-title">title = подсказка</button>
+                            <button class="btn btn--sm btn--ghost" id="attr-img">img.src → другая картинка</button>
+                        </div>
+                        <div class="out" id="attr-out"></div>
+                    </div>
+                    <table class="data" id="attr-table"></table>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ================= 5. СТИЛИ ================= -->
+    <section class="section" id="styles">
+        <h2 class="section__title">5. Изменение стиля элементов</h2>
+        <p class="section__lead">Свойство <code>style</code>, список классов <code>classList</code>, вычисленные стили и CSS-переменные.</p>
+        <div class="demo-grid">
+            <article class="demo">
+                <h3><small>Пример 5.1</small>element.style</h3>
+                <label class="field"><span>Размер названия: <b id="st-size-v">16</b>px</span><input type="range" id="st-size" min="12" max="28" value="16"></label>
+                <label class="field"><span>Скругление: <b id="st-radius-v">14</b>px</span><input type="range" id="st-radius" min="0" max="40" value="14"></label>
+                <label class="field"><span>Фон карточки</span><input type="color" id="st-bg" value="#ffffff"></label>
+                <div class="out" id="st-out"></div>
+            </article>
+            <article class="demo">
+                <h3><small>Пример 5.2</small>Предпросмотр и classList</h3>
+                <div class="preview-wrap">
+                    <article class="p-card preview" id="preview">
+                        <div class="p-card__img"><img src="../assets/img/p5.png" alt="Samsung Galaxy A54"></div>
+                        <span class="p-card__badge">−10%</span>
+                        <h4 class="p-card__title" id="preview-title">Samsung Galaxy A54 5G</h4>
+                        <div class="p-card__price">31 491 ₽</div>
+                    </article>
+                </div>
+                <div class="row">
+                    <button class="btn btn--sm" data-cls="is-sale">toggle('is-sale')</button>
+                    <button class="btn btn--sm" data-cls="is-dark">toggle('is-dark')</button>
+                    <button class="btn btn--sm" data-cls="is-compact">toggle('is-compact')</button>
+                </div>
+                <div class="out" id="cls-out"></div>
+            </article>
+            <article class="demo">
+                <h3><small>Пример 5.3</small>getComputedStyle и CSS-переменные</h3>
+                <p class="hint">Цвет бренда задан переменной <code>--brand</code>. Её смена через
+                   <code>style.setProperty()</code> перекрашивает всю страницу.</p>
+                <div class="swatches" id="swatches">
+                    <button style="background:#7000ff" data-color="#7000ff" title="Behoof"></button>
+                    <button style="background:#ff3100" data-color="#ff3100" title="оранжевый"></button>
+                    <button style="background:#0a84ff" data-color="#0a84ff" title="синий"></button>
+                    <button style="background:#1d8a4c" data-color="#1d8a4c" title="зелёный"></button>
+                </div>
+                <button class="btn" id="comp-run">Прочитать вычисленные стили кнопки</button>
+                <div class="out" id="comp-out"></div>
+            </article>
+        </div>
+    </section>
+
+    <p class="footer-note">ПССИП · JavaScript · ЛР 14 — объектная модель документа · тема «Behoof» · <a href="#top">наверх</a></p>
+</main>
+
+<script src="../assets/behoof.js"></script>
+<script src="js/document.js"></script>
+<script src="js/search.js"></script>
+<script src="js/nodes.js"></script>
+<script src="js/edit.js"></script>
+<script src="js/styles.js"></script>
+</body>
+</html>

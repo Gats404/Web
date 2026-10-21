@@ -1,0 +1,62 @@
+/* style.css — ЛР 14 (DOM): подсветка найденных узлов, дерево, конструктор, предпросмотр */
+
+.sort-bar { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; font-size: 14px; color: var(--muted); margin-bottom: 14px; }
+.p-card__link { font-size: 13px; font-weight: 700; margin-top: auto; }
+
+/* Подсветка найденных элементов */
+.is-found { outline: 3px solid var(--accent) !important; outline-offset: 3px; border-radius: 6px;
+            animation: found-pulse 1s ease 2; }
+@keyframes found-pulse { 50% { outline-color: var(--brand); } }
+.is-cursor { outline: 3px dashed var(--brand) !important; outline-offset: 4px; background-color: rgba(112,0,255,.06); }
+.is-selected { box-shadow: 0 0 0 3px var(--green), 0 12px 26px rgba(46,204,113,.2) !important; }
+
+.method-list { display: flex; flex-direction: column; gap: 6px; }
+.method-list button { text-align: left; border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 7px 10px;
+                      font-family: Consolas, monospace; font-size: 13px; color: var(--brand-dark); cursor: pointer; }
+.method-list button:hover, .method-list button.is-active { background: var(--brand-soft); border-color: var(--brand); }
+.presets { display: flex; gap: 6px; flex-wrap: wrap; }
+.presets .tag { border: none; cursor: pointer; font-family: Consolas, monospace; }
+
+/* Дерево узлов */
+.tree { font-family: Consolas, monospace; font-size: 13px; background: var(--code); color: #d7dbf0; border-radius: 10px;
+        padding: 12px 14px; max-height: 360px; overflow: auto; line-height: 1.7; }
+.tree ul { list-style: none; padding-left: 18px; border-left: 1px dashed #4a5070; margin-left: 4px; }
+.tree > ul { border-left: none; padding-left: 0; margin-left: 0; }
+.tree .t-el { color: #b99cff; font-weight: 700; }
+.tree .t-attr { color: #ffb86c; }
+.tree .t-text { color: #8be9a8; }
+.tree .t-comment { color: #8a90b0; font-style: italic; }
+.tree .t-type { color: #6c7290; font-size: 11px; margin-left: 6px; }
+
+.nav-pad { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.nav-pad .btn { font-family: Consolas, monospace; font-size: 12px; padding: 8px; }
+
+/* Конструктор и атрибуты */
+.builder { display: flex; flex-direction: column; gap: 10px; }
+#my-shelf:empty::before { content: 'Пока пусто — создайте карточку в конструкторе'; color: #b5b9c6; padding: 20px 0; }
+#my-shelf .p-card { cursor: pointer; }
+.p-card__actions { display: flex; gap: 6px; margin-top: 6px; }
+.p-card__actions button { flex: 1; border: none; border-radius: 8px; padding: 6px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; }
+.p-card__actions [data-act=replace] { background: var(--brand-soft); color: var(--brand); }
+.p-card__actions [data-act=remove] { background: #ffe3e3; color: #d43c3c; }
+.p-card[data-hit="true"]::after { content: 'ХИТ'; position: absolute; top: 12px; right: 12px; background: var(--accent); color: #fff;
+                                   font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 6px; }
+.sold { background: repeating-linear-gradient(45deg, #f4f4f7, #f4f4f7 10px, #ececf2 10px, #ececf2 20px); border-radius: 14px;
+        display: flex; align-items: center; justify-content: center; min-height: 230px; font-weight: 800; color: var(--muted); font-size: 18px; }
+.attr-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+
+/* Стили: предпросмотр */
+.preview-wrap { display: flex; justify-content: center; padding: 6px; }
+.preview { width: 220px; transition: all .3s; }
+.preview.is-sale { border: 2px solid var(--accent); }
+.preview.is-sale::before { content: '−10% только сегодня'; position: absolute; top: -10px; left: 12px; background: var(--accent); color: #fff;
+                           font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 6px; }
+.preview.is-dark { background: var(--ink) !important; color: #fff; }
+.preview.is-dark .p-card__img { background: #fff; border-radius: 10px; }
+.preview.is-compact { width: 160px; padding: 8px; }
+.preview.is-compact .p-card__img { height: 70px; }
+.swatches { display: flex; gap: 10px; }
+.swatches button { width: 38px; height: 38px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 1px var(--line); cursor: pointer; }
+.swatches button.is-active { box-shadow: 0 0 0 3px var(--ink); }
+
+@media (max-width: 800px) { .attr-layout { grid-template-columns: 1fr; } }

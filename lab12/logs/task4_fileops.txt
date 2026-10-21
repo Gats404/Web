@@ -1,0 +1,50 @@
+PS C:\...\web\lab12> node task4-fileops.js
+1) writeFile: создаём notes.txt с текстом «Первая запись»
+   Файлы в data/ после шага 1 (19):
+     input.txt                input1.txt               input2.txt               input3.txt
+   → notes.txt                output-callback-1.txt    output-callback-2.txt    output-callback-3.txt
+     output-callback.txt      output-promise-1.txt     output-promise-2.txt     output-promise-3.txt
+     output-promise.txt       output-sync-1.txt        output-sync-2.txt        output-sync-3.txt
+     output-sync.txt          report.txt               text.txt
+
+2) appendFile: дописываем две строки с текущей датой
+   Содержимое notes.txt:
+     | Первая запись
+     | Вторая запись — 21.10.2026, 10:39:36
+     | Третья запись — 21.10.2026, 10:39:36
+   Файлы в data/ после шага 2 (19):
+     input.txt                input1.txt               input2.txt               input3.txt
+   → notes.txt                output-callback-1.txt    output-callback-2.txt    output-callback-3.txt
+     output-callback.txt      output-promise-1.txt     output-promise-2.txt     output-promise-3.txt
+     output-promise.txt       output-sync-1.txt        output-sync-2.txt        output-sync-3.txt
+     output-sync.txt          report.txt               text.txt
+
+3) copyFile: notes.txt → notes-backup.txt
+   Файлы в data/ после шага 3 (20):
+     input.txt                input1.txt               input2.txt               input3.txt
+   → notes-backup.txt       → notes.txt                output-callback-1.txt    output-callback-2.txt
+     output-callback-3.txt    output-callback.txt      output-promise-1.txt     output-promise-2.txt
+     output-promise-3.txt     output-promise.txt       output-sync-1.txt        output-sync-2.txt
+     output-sync-3.txt        output-sync.txt          report.txt               text.txt
+
+4) rename: notes-backup.txt → notes-2026-10-04.txt
+   Файлы в data/ после шага 4 (20):
+     input.txt                input1.txt               input2.txt               input3.txt
+   → notes-2026-10-04.txt   → notes.txt                output-callback-1.txt    output-callback-2.txt
+     output-callback-3.txt    output-callback.txt      output-promise-1.txt     output-promise-2.txt
+     output-promise-3.txt     output-promise.txt       output-sync-1.txt        output-sync-2.txt
+     output-sync-3.txt        output-sync.txt          report.txt               text.txt
+
+5) unlink: удаляем notes.txt
+   Файлы в data/ после шага 5 (19):
+     input.txt                input1.txt               input2.txt               input3.txt
+   → notes-2026-10-04.txt     output-callback-1.txt    output-callback-2.txt    output-callback-3.txt
+     output-callback.txt      output-promise-1.txt     output-promise-2.txt     output-promise-3.txt
+     output-promise.txt       output-sync-1.txt        output-sync-2.txt        output-sync-3.txt
+     output-sync.txt          report.txt               text.txt
+
+Итог — содержимое notes-2026-10-04.txt:
+     | Первая запись
+     | Вторая запись — 21.10.2026, 10:39:36
+     | Третья запись — 21.10.2026, 10:39:36
+[код завершения: 0]

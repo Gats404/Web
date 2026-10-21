@@ -1,0 +1,7 @@
+PS C:\...\web\lab12> node task3-meta.js data/nope.txt
+=== Метаданные: data/nope.txt ===
+Существует (existsSync)..... нет
+Существует (access F_OK).... нет
+
+Файл "data/nope.txt" не найден — метаданные получить нельзя.
+[код завершения: 1]

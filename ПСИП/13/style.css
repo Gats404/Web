@@ -1,0 +1,61 @@
+/* style.css — ЛР 13 (BOM): элементы, которых нет в общем behoof.css */
+
+.bom-tree { margin-top: 18px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.bom-tree__root { background: #fff; color: var(--brand); font-weight: 800; padding: 8px 18px; border-radius: 12px;
+                  font-family: Consolas, monospace; }
+.bom-tree__children { display: flex; gap: 8px; flex-wrap: wrap; }
+.bom-tree__children span { background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.35); padding: 6px 12px;
+                           border-radius: 10px; font-family: Consolas, monospace; font-size: 14px; }
+.bom-tree__children i { opacity: .8; font-style: normal; font-size: 12px; }
+
+.timer { font-size: 2.6rem; font-weight: 800; color: var(--brand); text-align: center; font-variant-numeric: tabular-nums; }
+.big-num { font-size: 2.6rem; font-weight: 800; color: var(--brand); text-align: center; }
+.big-num::after { content: ' записей'; font-size: 1rem; color: var(--muted); font-weight: 600; }
+
+.presets { display: flex; gap: 8px; flex-wrap: wrap; }
+.presets .tag:hover { background: var(--brand); color: #fff; text-decoration: none; }
+.mini-form { display: flex; gap: 8px; flex-wrap: wrap; }
+.mini-form select, .mini-form input { flex: 1; min-width: 120px; }
+
+.nav-info { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; align-items: start; }
+.nav-info td:last-child { word-break: break-all; }
+
+.net { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; }
+.net::before { content: ''; width: 14px; height: 14px; border-radius: 50%; background: var(--green);
+               box-shadow: 0 0 0 5px rgba(46,204,113,.2); }
+.net.is-off { color: var(--accent); }
+.net.is-off::before { background: var(--accent); box-shadow: 0 0 0 5px rgba(255,81,81,.2); }
+
+.promo-code { display: flex; align-items: center; gap: 12px; border: 2px dashed var(--brand); border-radius: 12px; padding: 10px 14px; }
+.promo-code b { font-family: Consolas, monospace; font-size: 20px; color: var(--brand); letter-spacing: .08em; }
+.promo-code span { color: var(--muted); font-size: 13px; }
+
+.steps { display: flex; list-style: none; gap: 6px; counter-reset: step; }
+.steps li { flex: 1; text-align: center; padding: 8px 4px; border-radius: 10px; background: var(--bg); font-weight: 600;
+            font-size: 14px; color: var(--muted); counter-increment: step; }
+.steps li::before { content: counter(step) '. '; }
+.steps li.is-done { background: #dcf7e8; color: #1d8a4c; }
+.steps li.is-active { background: var(--brand); color: #fff; }
+.step-body, .tab-body { background: var(--bg); border-radius: 10px; padding: 12px 14px; font-size: 14px; min-height: 70px; }
+
+.tabs { display: flex; gap: 4px; border-bottom: 2px solid var(--line); }
+.tabs button { border: none; background: none; padding: 8px 12px; font-weight: 700; color: var(--muted); cursor: pointer;
+               border-bottom: 2px solid transparent; margin-bottom: -2px; font-family: inherit; font-size: 14px; }
+.tabs button.is-active { color: var(--brand); border-bottom-color: var(--brand); }
+
+.screen-viz { display: flex; justify-content: center; padding: 6px 0; }
+.screen-legend { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); }
+.screen-legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.screen-viz__screen { position: relative; background: var(--ink); color: #c8ccd8; border-radius: 6px; }
+.screen-viz__avail { position: absolute; left: 0; top: 0; background: #3d4462; color: #fff; }
+.screen-viz__win { position: absolute; background: var(--brand); color: #fff; border-radius: 3px; }
+
+.device { border-radius: 14px; padding: 16px; display: flex; gap: 14px; align-items: center; color: #fff; }
+.device__icon { font-size: 40px; line-height: 1; }
+.device b { display: block; font-size: 20px; }
+.device--desktop { background: linear-gradient(120deg, #7000ff, #9a4dff); }
+.device--tablet { background: linear-gradient(120deg, #e67e22, #f5a623); }
+.device--phone { background: linear-gradient(120deg, #ff5151, #ff8a65); }
+.reasons { font-size: 13px; color: var(--muted); padding-left: 18px; }
+
+@media (max-width: 800px) { .nav-info { grid-template-columns: 1fr; } }

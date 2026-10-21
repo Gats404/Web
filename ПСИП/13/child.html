@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Окно оформления заказа · Behoof</title>
+    <link rel="stylesheet" href="../assets/behoof.css">
+    <style>
+        body { padding: 20px; }
+        .head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+        .box { background: #fff; border-radius: 16px; padding: 18px; box-shadow: 0 2px 10px rgba(0,0,0,.05);
+               display: flex; flex-direction: column; gap: 12px; }
+        .order { display: flex; gap: 12px; align-items: center; }
+        .order img { width: 70px; height: 70px; object-fit: contain; }
+        .radios { display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="head">
+        <span class="logo"><span class="logo__mark">B</span>ehoof</span>
+        <span class="tag" id="win-name"></span>
+    </div>
+    <div class="box">
+        <h3>Подтверждение заказа</h3>
+        <div id="order" class="alert alert--info">Ожидаем данные от главного окна…</div>
+        <div class="radios">
+            <b>Способ доставки</b>
+            <label><input type="radio" name="delivery" value="курьер" checked> Курьер (завтра)</label>
+            <label><input type="radio" name="delivery" value="пункт выдачи"> Пункт выдачи (бесплатно)</label>
+            <label><input type="radio" name="delivery" value="самовывоз"> Самовывоз из магазина</label>
+        </div>
+        <label class="field"><span>Комментарий</span><input type="text" id="comment" value="Позвонить за час"></label>
+        <div class="row">
+            <button class="btn btn--green" id="send">Подтвердить и отправить ответ</button>
+            <button class="btn btn--ghost" id="close">Закрыть окно</button>
+        </div>
+        <div class="out" id="log"></div>
+    </div>
+
+<script>
+    // Дочернее окно: получает данные через message, отвечает через window.opener.postMessage
+    const TARGET_ORIGIN = location.origin === 'null' ? '*' : location.origin;
+    const log = (t) => (document.getElementById('log').textContent += t + '\n');
+
+    document.getElementById('win-name').textContent = 'window.name = ' + (window.name || '(пусто)');
+
+    if (!window.opener) {
+        document.getElementById('order').textContent = 'Это окно нужно открыть кнопкой на главной странице ЛР 13.';
+    } else {
+        window.opener.postMessage({ type: 'ready' }, TARGET_ORIGIN); // «я загрузилось»
+        log('window.opener есть → отправлено сообщение ready');
+    }
+
+    window.addEventListener('message', (e) => {
+        if (e.source !== window.opener || e.data.type !== 'order') return;
+        const { customer, product } = e.data;
+        const price = Math.round(product.price * (1 - product.discount / 100)).toLocaleString('ru-RU');
+        document.getElementById('order').innerHTML =
+            `<div class="order"><img src="../assets/img/${product.image}" alt="">` +
+            `<div><b>${product.name}</b><br>${price} ₽ · покупатель: ${customer}</div></div>`;
+        log('← получено из главного окна: ' + product.name);
+    });
+
+    document.getElementById('send').addEventListener('click', () => {
+        if (!window.opener) return;
+        window.opener.postMessage({
+            type: 'reply',
+            delivery: document.querySelector('[name=delivery]:checked').value,
+            comment: document.getElementById('comment').value,
+            time: new Date().toLocaleTimeString('ru-RU'),
+        }, TARGET_ORIGIN);
+        log('→ ответ отправлен в главное окно');
+    });
+
+    document.getElementById('close').addEventListener('click', () => window.close());
+</script>
+</body>
+</html>

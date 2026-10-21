@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЛР 19–20 — Local Storage и Session Storage · Behoof</title>
+    <link rel="stylesheet" href="../assets/behoof.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="lab-header">
+    <div class="container lab-header__inner">
+        <a href="../index.html" class="logo"><span class="logo__mark">B</span>ehoof</a>
+        <span class="lab-header__title">ЛР 19–20 · Хранение данных</span>
+        <nav class="lab-header__nav">
+            <a href="index.html">1. JSON и корзина</a>
+            <a href="cookie.html">2. Cookie</a>
+            <a href="storage.html" style="background:var(--brand);color:#fff">3. Local Storage</a>
+            <a href="../index.html">← Все работы</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section class="lab-hero">
+        <h1>Задание 3. Личные данные в Local Storage</h1>
+        <p>Та же форма, но данные сохраняются в постоянном хранилище <code>localStorage</code> одним JSON-объектом
+           (<code>JSON.stringify</code> → <code>setItem</code>, <code>getItem</code> → <code>JSON.parse</code>, <code>removeItem</code>).
+           Ниже — <code>sessionStorage</code>: черновик формы и счётчик посещений, которые живут только до закрытия вкладки.</p>
+    </section>
+
+    <div id="greeting" class="greeting"></div>
+
+    <div class="profile">
+        <form class="demo pform" id="profile-form">
+            <h3><small>Форма</small>Личные данные покупателя</h3>
+            <label class="field"><span>ФИО</span><input type="text" name="fio" required placeholder="Иванов Иван Иванович"></label>
+            <div class="grid2">
+                <label class="field"><span>Электронная почта</span><input type="email" name="email" required placeholder="name@example.com"></label>
+                <label class="field"><span>Телефон</span><input type="tel" name="phone" placeholder="+7 900 000-00-00"></label>
+                <label class="field"><span>Дата рождения</span><input type="date" name="birth"></label>
+                <label class="field"><span>Место рождения</span><input type="text" name="place" placeholder="г. Москва"></label>
+            </div>
+            <div class="field"><span>Увлечения</span>
+                <div class="hobbies">
+                    <label><input type="checkbox" name="hobbies" value="гаджеты">📱 Гаджеты</label>
+                    <label><input type="checkbox" name="hobbies" value="музыка">🎧 Музыка</label>
+                    <label><input type="checkbox" name="hobbies" value="спорт">⚽ Спорт</label>
+                    <label><input type="checkbox" name="hobbies" value="путешествия">✈️ Путешествия</label>
+                    <label><input type="checkbox" name="hobbies" value="игры">🎮 Игры</label>
+                    <label><input type="checkbox" name="hobbies" value="фото">📷 Фото</label>
+                </div>
+            </div>
+            <label class="field"><span>Любимая категория</span>
+                    <select name="category"><option>Смартфоны</option><option>Умные колонки</option><option>Ноутбуки</option><option>Часы</option></select>
+                </label>
+            <div class="row">
+                <button class="btn" id="save">💾 Сохранить в localStorage</button>
+                <button class="btn btn--ghost" type="button" id="load">📖 Получить из localStorage</button>
+                <button class="btn btn--accent" type="button" id="clear">🗑 Очистить localStorage</button>
+                <button class="btn btn--ghost" type="button" id="example">Пример</button>
+            </div>
+        </form>
+
+        <div class="demo">
+            <h3><small>Результат</small>Что сохранено в localStorage</h3>
+            <table class="data" id="ls-table"></table>
+            <h3 style="margin-top:8px"><small>localStorage.getItem('behoof-profile')</small>Строка JSON в хранилище</h3>
+            <div class="out out--dark" id="ls-raw"></div>
+            <p class="hint" id="ls-info"></p>
+        </div>
+    </div>
+
+    <section class="section">
+        <h2 class="section__title">sessionStorage и сравнение хранилищ</h2>
+        <div class="demo-grid">
+            <article class="demo">
+                <h3><small>sessionStorage</small>Черновик формы и счётчик</h3>
+                <p class="hint">Всё, что вы вводите, сразу пишется в <code>sessionStorage</code> (событие <code>input</code>).
+                   Обновите страницу — черновик восстановится; закройте вкладку — пропадёт.</p>
+                <div class="big" id="ss-visits"></div>
+                <div class="out" id="ss-out"></div>
+                <button class="btn btn--ghost" type="button" id="ss-clear">sessionStorage.clear()</button>
+            </article>
+            <article class="demo">
+                <h3><small>Все ключи</small>Содержимое localStorage этого сайта</h3>
+                <table class="data" id="ls-keys"></table>
+                <p class="hint">Событие <code>storage</code>: откройте эту страницу во второй вкладке и сохраните данные там — здесь появится уведомление.</p>
+                <div class="out" id="ls-event"></div>
+            </article>
+            <article class="demo demo--wide">
+                <h3><small>Сравнение</small>cookie, localStorage, sessionStorage</h3>
+                <table class="data compare">
+                    <tr><th>Свойство</th><th>cookie</th><th>localStorage</th><th>sessionStorage</th></tr>
+                    <tr><td>Объём</td><td>≈ 4 КБ на cookie</td><td>≈ 5–10 МБ на сайт</td><td>≈ 5 МБ на вкладку</td></tr>
+                    <tr><td>Срок жизни</td><td>до expires / max-age или до закрытия браузера</td><td>бессрочно, пока не удалят</td><td>до закрытия вкладки</td></tr>
+                    <tr><td>Отправляется на сервер</td><td>да, с каждым HTTP-запросом</td><td>нет</td><td>нет</td></tr>
+                    <tr><td>Доступ из JS</td><td>document.cookie (строка)</td><td>setItem / getItem / removeItem / clear</td><td>те же методы</td></tr>
+                    <tr><td>Видимость</td><td>домен и path</td><td>все вкладки этого origin</td><td>только текущая вкладка</td></tr>
+                    <tr><td>Тип значения</td><td>строка (кодируется encodeURIComponent)</td><td>строка (объекты — через JSON)</td><td>строка</td></tr>
+                </table>
+            </article>
+        </div>
+    </section>
+
+    <p class="footer-note">ПССИП · JavaScript · ЛР 19–20 — Web Storage · тема «Behoof»</p>
+</main>
+
+<div class="toast-box" id="toasts"></div>
+<script src="../assets/behoof.js"></script>
+<script src="js/profile-form.js"></script>
+<script src="js/storage.js"></script>
+</body>
+</html>

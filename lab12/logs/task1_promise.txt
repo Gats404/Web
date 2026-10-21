@@ -1,0 +1,10 @@
+PS C:\...\web\lab12> node task1-promise.js
+=== Promise API: fs/promises + async/await ===
+main() запущена, синхронный код закончился — await-ы продолжатся позже...
+promise: input.txt: 2.937ms
+  input.txt → output-promise.txt (213 симв.)
+  promise: input2.txt: 1.763ms
+  promise: input3.txt: 2.06ms
+  promise: input1.txt: 2.408ms
+promise: 3 файла в цикле: 2.574ms
+[код завершения: 0]

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЛР 16 — пользовательские объекты в JavaScript · Behoof</title>
+    <link rel="stylesheet" href="../assets/behoof.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="lab-header">
+    <div class="container lab-header__inner">
+        <a href="../index.html" class="logo"><span class="logo__mark">B</span>ehoof</a>
+        <span class="lab-header__title">ЛР 16 · Объекты</span>
+        <nav class="lab-header__nav">
+            <a href="#t1">1. Создание</a>
+            <a href="#t2">2. Методы</a>
+            <a href="#t3">3. delete / in</a>
+            <a href="#t4">4. Перебор</a>
+            <a href="#t5">5. Вложенные</a>
+            <a href="#t6">6. Справочник</a>
+            <a href="../index.html">← Все работы</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section class="lab-hero">
+        <h1>Пользовательские объекты в JavaScript</h1>
+        <p>Объект — набор свойств «ключ: значение». Значением может быть что угодно: строка, число, массив,
+           другой объект или функция (тогда это метод). Каждое задание показывает код и результат его выполнения;
+           тот же вывод дублируется в консоль браузера (F12 → Console).</p>
+    </section>
+
+    <!-- Задания 1–5: код слева, результат справа (заполняется из tasks.js) -->
+    <div id="tasks"></div>
+
+    <!-- ================= ЗАДАНИЕ 6: ТЕЛЕФОННЫЙ СПРАВОЧНИК ================= -->
+    <section class="section" id="t6">
+        <h2 class="section__title">Задание 6. <span>Телефонный справочник Behoof</span></h2>
+        <p class="section__lead">Все операции вместе: создание объектов, методы с <code>this</code>, <code>delete</code>,
+           <code>in</code>, <code>hasOwnProperty</code>, перебор <code>for…in</code> / <code>Object.entries</code>, вложенные объекты.</p>
+
+        <div class="book">
+            <form class="demo book__form" id="pb-form">
+                <h3 id="pb-form-title">Новый контакт</h3>
+                <input type="hidden" name="id">
+                <label class="field"><span>ФИО</span><input type="text" name="name" required placeholder="Петров Пётр"></label>
+                <label class="field"><span>Отдел</span>
+                    <select name="dept">
+                        <option value="sales">Продажи</option>
+                        <option value="support">Поддержка</option>
+                        <option value="delivery">Доставка</option>
+                        <option value="partners">Партнёры</option>
+                    </select>
+                </label>
+                <label class="field"><span>Мобильный</span><input type="tel" name="mobile" required placeholder="+7 900 000-00-00"></label>
+                <label class="field"><span>Рабочий (необязательно)</span><input type="tel" name="work" placeholder="+7 495 000-00-00, доб. 100"></label>
+                <label class="field"><span>Email</span><input type="email" name="email" placeholder="name@behoof.ru"></label>
+                <label class="field"><span>Город</span><input type="text" name="city" value="Москва"></label>
+                <div class="row">
+                    <button class="btn" id="pb-save">Добавить</button>
+                    <button class="btn btn--ghost" type="reset" id="pb-cancel">Очистить</button>
+                </div>
+            </form>
+
+            <div class="demo book__list">
+                <div class="book__tools">
+                    <input type="search" id="pb-search" placeholder="Поиск по имени, телефону или email">
+                    <select id="pb-sort">
+                        <option value="name">По имени</option>
+                        <option value="dept">По отделу</option>
+                        <option value="added">По дате добавления</option>
+                    </select>
+                </div>
+                <div class="book__stats" id="pb-stats"></div>
+                <div class="book__groups" id="pb-list"></div>
+            </div>
+        </div>
+        <div class="demo" style="margin-top:20px">
+            <h3><small>Что происходит с объектом</small>Журнал операций</h3>
+            <div class="out out--dark" id="pb-log"></div>
+        </div>
+    </section>
+
+    <p class="footer-note">ПССИП · JavaScript · ЛР 16 — пользовательские объекты · тема «Behoof»</p>
+</main>
+
+<div class="toast-box" id="toasts"></div>
+<script src="../assets/behoof.js"></script>
+<script src="js/tasks.js"></script>
+<script src="js/phonebook.js"></script>
+</body>
+</html>

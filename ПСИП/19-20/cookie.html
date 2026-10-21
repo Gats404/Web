@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЛР 19–20 — работа с cookie · Behoof</title>
+    <link rel="stylesheet" href="../assets/behoof.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="lab-header">
+    <div class="container lab-header__inner">
+        <a href="../index.html" class="logo"><span class="logo__mark">B</span>ehoof</a>
+        <span class="lab-header__title">ЛР 19–20 · Хранение данных</span>
+        <nav class="lab-header__nav">
+            <a href="index.html">1. JSON и корзина</a>
+            <a href="cookie.html" style="background:var(--brand);color:#fff">2. Cookie</a>
+            <a href="storage.html">3. Local Storage</a>
+            <a href="../index.html">← Все работы</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section class="lab-hero">
+        <h1>Задание 2. Личные данные в cookie</h1>
+        <p>Данные формы сохраняются в <code>document.cookie</code> (каждое поле — отдельная cookie со сроком жизни <code>max-age</code>),
+           читаются обратно разбором строки <code>document.cookie</code> и удаляются установкой <code>max-age=0</code>.</p>
+    </section>
+
+    <div id="greeting" class="greeting"></div>
+
+    <div class="profile">
+        <form class="demo pform" id="profile-form">
+            <h3><small>Форма</small>Личные данные покупателя</h3>
+            <label class="field"><span>ФИО</span><input type="text" name="fio" required placeholder="Иванов Иван Иванович"></label>
+            <div class="grid2">
+                <label class="field"><span>Электронная почта</span><input type="email" name="email" required placeholder="name@example.com"></label>
+                <label class="field"><span>Телефон</span><input type="tel" name="phone" placeholder="+7 900 000-00-00"></label>
+                <label class="field"><span>Дата рождения</span><input type="date" name="birth"></label>
+                <label class="field"><span>Место рождения</span><input type="text" name="place" placeholder="г. Москва"></label>
+            </div>
+            <div class="field"><span>Увлечения</span>
+                <div class="hobbies">
+                    <label><input type="checkbox" name="hobbies" value="гаджеты">📱 Гаджеты</label>
+                    <label><input type="checkbox" name="hobbies" value="музыка">🎧 Музыка</label>
+                    <label><input type="checkbox" name="hobbies" value="спорт">⚽ Спорт</label>
+                    <label><input type="checkbox" name="hobbies" value="путешествия">✈️ Путешествия</label>
+                    <label><input type="checkbox" name="hobbies" value="игры">🎮 Игры</label>
+                    <label><input type="checkbox" name="hobbies" value="фото">📷 Фото</label>
+                </div>
+            </div>
+            <div class="grid2">
+                <label class="field"><span>Любимая категория</span>
+                    <select name="category"><option>Смартфоны</option><option>Умные колонки</option><option>Ноутбуки</option><option>Часы</option></select>
+                </label>
+                <label class="field"><span>Хранить cookie</span>
+                    <select name="days"><option value="1">1 день</option><option value="7" selected>7 дней</option><option value="30">30 дней</option></select>
+                </label>
+            </div>
+            <div class="row">
+                <button class="btn" id="save">💾 Сохранить в cookie</button>
+                <button class="btn btn--ghost" type="button" id="load">📖 Получить из cookie</button>
+                <button class="btn btn--accent" type="button" id="clear">🗑 Очистить cookie</button>
+                <button class="btn btn--ghost" type="button" id="example">Пример</button>
+            </div>
+        </form>
+
+        <div class="demo">
+            <h3><small>Результат</small>Что сохранено в cookie</h3>
+            <table class="data" id="cookie-table"></table>
+            <h3 style="margin-top:8px"><small>Сырая строка</small>document.cookie</h3>
+            <div class="out out--dark" id="cookie-raw"></div>
+            <p class="hint" id="cookie-info"></p>
+        </div>
+    </div>
+
+    <p class="footer-note">ПССИП · JavaScript · ЛР 19–20 — cookie · тема «Behoof»</p>
+</main>
+
+<div class="toast-box" id="toasts"></div>
+<script src="../assets/behoof.js"></script>
+<script src="js/profile-form.js"></script>
+<script src="js/cookie.js"></script>
+</body>
+</html>

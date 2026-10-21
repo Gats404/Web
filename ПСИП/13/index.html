@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЛР 13 — объектная модель браузера (BOM) · Behoof</title>
+    <link rel="stylesheet" href="../assets/behoof.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="lab-header">
+    <div class="container lab-header__inner">
+        <a href="../index.html" class="logo"><span class="logo__mark">B</span>ehoof</a>
+        <span class="lab-header__title">ЛР 13 · BOM</span>
+        <nav class="lab-header__nav">
+            <a href="#window">window</a>
+            <a href="#location">location</a>
+            <a href="#navigator">navigator</a>
+            <a href="#history">history</a>
+            <a href="#screen">screen</a>
+            <a href="../index.html">← Все работы</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="lab-hero">
+        <h1>Объектная модель браузера (BOM)</h1>
+        <p>Глобальный объект <b>window</b> — это само окно браузера. Через него доступны остальные объекты BOM:
+           адрес страницы, сведения о браузере, история переходов и параметры экрана.</p>
+        <div class="bom-tree">
+            <div class="bom-tree__root">window</div>
+            <div class="bom-tree__children">
+                <span>document <i>(DOM)</i></span><span>location</span><span>navigator</span>
+                <span>history</span><span>screen</span><span>frames · localStorage · таймеры</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= WINDOW ================= -->
+    <section class="section" id="window">
+        <h2 class="section__title">Объект <span>window</span></h2>
+        <p class="section__lead">Окно браузера: открытие и закрытие окон, таймеры, размеры, диалоговые окна.</p>
+        <div class="demo-grid">
+
+            <article class="demo">
+                <h3><small>Пример 1</small>Межоконное взаимодействие</h3>
+                <p class="hint">Главное окно открывает окно оформления заказа, передаёт ему данные через
+                   <code>postMessage</code> и получает ответ обратно через <code>window.opener</code>.</p>
+                <label class="field"><span>Покупатель</span><input type="text" id="w-customer" value="Иван Иванов"></label>
+                <label class="field"><span>Товар</span><select id="w-product"></select></label>
+                <div class="row">
+                    <button class="btn" id="w-open">Открыть окно заказа</button>
+                    <button class="btn btn--ghost" id="w-close">Закрыть окно</button>
+                </div>
+                <div class="out" id="w-out"></div>
+            </article>
+
+            <article class="demo">
+                <h3><small>Пример 3</small>Управление окном и таймеры</h3>
+                <p class="hint"><code>setInterval</code> считает время на странице, <code>setTimeout</code> показывает
+                   уведомление об акции, кнопки переходят на сайт и обновляют страницу.</p>
+                <div class="timer" id="w-timer">00:00</div>
+                <div class="row">
+                    <button class="btn" id="w-go">Перейти на сайт Behoof</button>
+                    <button class="btn btn--ghost" id="w-reload">Обновить страницу</button>
+                </div>
+                <div class="row">
+                    <button class="btn btn--accent" id="w-promo">Акция через 3 секунды</button>
+                    <button class="btn btn--ghost" id="w-promo-cancel">Отменить</button>
+                </div>
+                <div class="out" id="w-timer-out"></div>
+            </article>
+
+            <article class="demo">
+                <h3><small>Доп. пример</small>Размеры окна и диалоги</h3>
+                <p class="hint">Свойства окна обновляются по событиям <code>resize</code> и <code>scroll</code>.
+                   Методы <code>alert</code>, <code>confirm</code>, <code>prompt</code> — тоже методы window.</p>
+                <table class="data" id="w-size"></table>
+                <div class="row">
+                    <button class="btn btn--ghost" id="w-confirm">confirm()</button>
+                    <button class="btn btn--ghost" id="w-prompt">prompt()</button>
+                    <button class="btn btn--ghost" id="w-top">scrollTo(0, 0)</button>
+                </div>
+                <div class="out" id="w-dialog-out"></div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ================= LOCATION ================= -->
+    <section class="section" id="location">
+        <h2 class="section__title">Объект <span>location</span></h2>
+        <p class="section__lead">Адрес текущей страницы: чтение частей URL, GET-параметры, переходы.</p>
+        <div class="demo-grid">
+
+            <article class="demo">
+                <h3><small>Доп. пример</small>Разбор адреса страницы</h3>
+                <p class="hint">Таблица перестраивается при смене <code>location.hash</code> (событие <code>hashchange</code>).</p>
+                <table class="data" id="l-table"></table>
+            </article>
+
+            <article class="demo">
+                <h3><small>Пример 7</small>Каталог с параметрами поиска</h3>
+                <p class="hint">Как фильтры интернет-магазина: параметры попадают в URL (<code>?category=…&amp;maxPrice=…</code>),
+                   а страница каталога читает их через <code>location.search</code> и <code>URLSearchParams</code>.</p>
+                <div class="presets">
+                    <a class="tag" href="catalog.html?category=smartphone&amp;maxPrice=30000&amp;sort=price-asc">Смартфоны до 30 000 ₽</a>
+                    <a class="tag" href="catalog.html?category=speaker&amp;sort=rating">Умные колонки</a>
+                    <a class="tag" href="catalog.html?brand=Apple">Apple</a>
+                    <a class="tag" href="catalog.html?q=galaxy&amp;inStock=1&amp;sort=discount">Galaxy в наличии</a>
+                </div>
+                <form class="mini-form" id="l-form" action="catalog.html" method="get">
+                    <select name="category">
+                        <option value="">Все категории</option>
+                        <option value="smartphone">Смартфоны</option>
+                        <option value="speaker">Колонки</option>
+                    </select>
+                    <input type="number" name="maxPrice" placeholder="Цена до, ₽" min="0" step="1000">
+                    <button class="btn">Найти</button>
+                </form>
+                <div class="out" id="l-url"></div>
+            </article>
+
+            <article class="demo">
+                <h3><small>Доп. пример</small>Методы навигации</h3>
+                <p class="hint"><code>assign()</code> добавляет запись в историю, <code>replace()</code> — заменяет текущую
+                   (кнопка «Назад» сюда уже не вернёт), <code>reload()</code> перезагружает страницу.</p>
+                <div class="row">
+                    <button class="btn btn--ghost" id="l-hash">location.hash = '#screen'</button>
+                    <button class="btn" id="l-assign">assign(колонки)</button>
+                    <button class="btn btn--accent" id="l-replace">replace(Apple)</button>
+                </div>
+                <div class="out" id="l-nav-out"></div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ================= NAVIGATOR ================= -->
+    <section class="section" id="navigator">
+        <h2 class="section__title">Объект <span>navigator</span></h2>
+        <p class="section__lead">Сведения о браузере и системе пользователя, состояние сети, системные API.</p>
+        <div class="demo-grid">
+
+            <article class="demo demo--wide">
+                <h3><small>Пример 2</small>Информация о браузере и системе</h3>
+                <p class="hint">Заполняется при загрузке страницы (событие <code>DOMContentLoaded</code>).</p>
+                <div class="nav-info">
+                    <table class="data" id="n-browser"></table>
+                    <table class="data" id="n-screen"></table>
+                </div>
+            </article>
+
+            <article class="demo">
+                <h3><small>Доп. пример</small>Онлайн или офлайн</h3>
+                <p class="hint"><code>navigator.onLine</code> + события <code>online</code>/<code>offline</code>.
+                   Отключите сеть в DevTools (Network → Offline), чтобы увидеть смену статуса.</p>
+                <div class="net" id="n-net"></div>
+                <div class="out" id="n-net-log"></div>
+            </article>
+
+            <article class="demo">
+                <h3><small>Доп. пример</small>Буфер обмена, язык, геолокация</h3>
+                <p class="hint"><code>navigator.clipboard</code> копирует промокод, <code>navigator.language</code>
+                   выбирает приветствие, <code>navigator.geolocation</code> ищет ближайший пункт выдачи.</p>
+                <div class="promo-code"><b>BEHOOF500</b><span>−500 ₽ на первый заказ</span></div>
+                <div class="row">
+                    <button class="btn" id="n-copy">Скопировать промокод</button>
+                    <button class="btn btn--ghost" id="n-geo">Где ближайший пункт выдачи?</button>
+                </div>
+                <div class="out" id="n-out"></div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ================= HISTORY ================= -->
+    <section class="section" id="history">
+        <h2 class="section__title">Объект <span>history</span></h2>
+        <p class="section__lead">История переходов текущей вкладки: назад, вперёд и состояния одной страницы.</p>
+        <div class="demo-grid">
+
+            <article class="demo">
+                <h3><small>Доп. пример</small>Переходы по истории</h3>
+                <p class="hint"><code>history.length</code> — сколько записей в истории вкладки.
+                   Методы <code>back()</code>, <code>forward()</code>, <code>go(n)</code> работают как кнопки браузера.</p>
+                <div class="big-num" id="h-length">1</div>
+                <div class="row">
+                    <button class="btn btn--ghost" id="h-back">← back()</button>
+                    <button class="btn btn--ghost" id="h-forward">forward() →</button>
+                    <button class="btn btn--ghost" id="h-go">go(-2)</button>
+                </div>
+            </article>
+
+            <article class="demo">
+                <h3><small>Пример 4</small>Три состояния страницы: оформление заказа</h3>
+                <p class="hint"><code>pushState()</code> добавляет состояние в историю, событие <code>popstate</code>
+                   восстанавливает его при нажатии «Назад»/«Вперёд» (в браузере или на кнопках ниже).</p>
+                <ol class="steps" id="h-steps">
+                    <li data-step="1">Корзина</li><li data-step="2">Доставка</li><li data-step="3">Оплата</li>
+                </ol>
+                <div class="step-body" id="h-step-body"></div>
+                <div class="row">
+                    <button class="btn btn--ghost" id="h-prev">← Назад</button>
+                    <button class="btn" id="h-next">Далее →</button>
+                </div>
+                <div class="out" id="h-state"></div>
+            </article>
+
+            <article class="demo">
+                <h3><small>Доп. пример</small>replaceState: вкладки без записей в истории</h3>
+                <p class="hint">Переключение вкладок товара меняет URL через <code>replaceState()</code> —
+                   <code>history.length</code> не растёт, «Назад» не листает вкладки.</p>
+                <div class="tabs" id="h-tabs">
+                    <button data-tab="desc">Описание</button>
+                    <button data-tab="specs">Характеристики</button>
+                    <button data-tab="reviews">Отзывы</button>
+                </div>
+                <div class="tab-body" id="h-tab-body"></div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ================= SCREEN ================= -->
+    <section class="section" id="screen">
+        <h2 class="section__title">Объект <span>screen</span></h2>
+        <p class="section__lead">Параметры монитора пользователя — для аналитики и адаптации интерфейса.</p>
+        <div class="demo-grid">
+
+            <article class="demo">
+                <h3><small>Пример 5</small>Дашборд характеристик экрана</h3>
+                <table class="data" id="s-table"></table>
+                <div class="screen-viz" id="s-viz">
+                    <div class="screen-viz__screen">
+                        <div class="screen-viz__avail">
+                            <div class="screen-viz__win"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="screen-legend">
+                    <span><i style="background:#2a2f45"></i>screen.width × height (полоса снизу — панель задач)</span>
+                    <span><i style="background:#3d4462"></i>availWidth × availHeight</span>
+                    <span><i style="background:#7000ff"></i>окно браузера (outerWidth × outerHeight, screenX/Y)</span>
+                </div>
+            </article>
+
+            <article class="demo">
+                <h3><small>Пример 6</small>Тип устройства (screen + navigator)</h3>
+                <p class="hint">Ширина экрана + userAgent + число точек касания. Пересчитывается при изменении размера окна.</p>
+                <div id="s-device"></div>
+                <ul class="reasons" id="s-reasons"></ul>
+            </article>
+
+            <article class="demo">
+                <h3><small>Доп. пример</small>Подстройка магазина под экран</h3>
+                <p class="hint">По <code>screen.width × devicePixelRatio</code> выбирается размер баннера,
+                   по <code>availWidth</code> — число колонок каталога.</p>
+                <table class="data" id="s-adapt"></table>
+            </article>
+        </div>
+    </section>
+
+    <p class="footer-note">ПССИП · JavaScript · ЛР 13 — объектная модель браузера · тема «Behoof»</p>
+</main>
+
+<div class="toast-box" id="toasts"></div>
+
+<script src="../assets/data/products.js"></script>
+<script src="../assets/behoof.js"></script>
+<script src="js/window.js"></script>
+<script src="js/location.js"></script>
+<script src="js/navigator.js"></script>
+<script src="js/history.js"></script>
+<script src="js/screen.js"></script>
+</body>
+</html>

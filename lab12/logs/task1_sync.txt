@@ -1,0 +1,10 @@
+PS C:\...\web\lab12> node task1-sync.js
+=== Синхронный API: fs.readFileSync / fs.writeFileSync ===
+sync: input.txt: 1.145ms
+  input.txt → output-sync.txt (213 симв.)
+  sync: input1.txt: 0.936ms
+  sync: input2.txt: 0.66ms
+  sync: input3.txt: 0.579ms
+sync: 3 файла в цикле: 2.588ms
+Эта строка напечатана ПОСЛЕ всех операций — код ждал каждую из них.
+[код завершения: 0]

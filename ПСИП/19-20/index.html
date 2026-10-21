@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЛР 19–20 — каталог из JSON и корзина · Behoof</title>
+    <link rel="stylesheet" href="../assets/behoof.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="lab-header">
+    <div class="container lab-header__inner">
+        <a href="../index.html" class="logo"><span class="logo__mark">B</span>ehoof</a>
+        <span class="lab-header__title">ЛР 19–20 · Хранение данных</span>
+        <nav class="lab-header__nav">
+            <a href="index.html" style="background:var(--brand);color:#fff">1. JSON и корзина</a>
+            <a href="cookie.html">2. Cookie</a>
+            <a href="storage.html">3. Local Storage</a>
+            <a href="../index.html">← Все работы</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section class="lab-hero">
+        <h1>Задание 1. JSON-каталог и корзина интернет-магазина</h1>
+        <p>Каталог из 12 товаров хранится в файле <code>data/products.json</code> и загружается асинхронно (AJAX: <code>fetch</code>
+           или <code>XMLHttpRequest</code>). Товары и корзина — объекты классов из ЛР 17 (<code>Catalog</code>, <code>Product</code>, <code>Cart</code>).
+           Корзина сохраняется в <code>localStorage</code> и не пропадает после перезагрузки страницы.</p>
+    </section>
+
+    <div class="status" id="status"><span class="tag">Загрузка каталога…</span></div>
+
+    <section class="shop">
+        <div>
+            <div class="toolbar">
+                <input type="search" id="q" placeholder="Поиск по каталогу">
+                <select id="cat">
+                    <option value="">Все категории</option>
+                    <option value="smartphone">Смартфоны</option>
+                    <option value="speaker">Умные колонки</option>
+                </select>
+                <select id="sort">
+                    <option value="">По умолчанию</option>
+                    <option value="price">Сначала дешёвые</option>
+                    <option value="rating">По рейтингу</option>
+                </select>
+                <button class="btn btn--ghost" id="reload-xhr" title="Загрузить JSON заново через XMLHttpRequest">↻ XMLHttpRequest</button>
+            </div>
+            <div class="products" id="grid"></div>
+        </div>
+
+        <aside class="demo cart">
+            <h3><small>localStorage['behoof-cart']</small>Корзина</h3>
+            <ul class="cart__list" id="cart-list"></ul>
+            <form class="promo" id="promo-form">
+                <input type="text" id="promo" placeholder="Промокод (BEHOOF500)">
+                <button class="btn btn--ghost btn--sm">Применить</button>
+            </form>
+            <div class="cart__sum">
+                <div><span>Товаров</span><b id="sum-count">0</b></div>
+                <div><span>Сумма</span><span id="sum-goods">0 ₽</span></div>
+                <div><span>Скидка по промокоду</span><span id="sum-promo">0 ₽</span></div>
+                <div class="total"><span>Итого</span><span id="sum-total">0 ₽</span></div>
+            </div>
+            <div class="row">
+                <button class="btn btn--green" id="checkout">Оформить заказ</button>
+                <button class="btn btn--ghost" id="clear">Очистить</button>
+            </div>
+        </aside>
+    </section>
+
+    <section class="section">
+        <h2 class="section__title">Что лежит в JSON и в хранилище</h2>
+        <div class="json-grid">
+            <div class="demo">
+                <h3><small>Ответ сервера (text)</small>data/products.json</h3>
+                <div class="out out--dark" id="raw-json"></div>
+            </div>
+            <div class="demo">
+                <h3><small>JSON.stringify(cart) → localStorage</small>Сохранённая корзина</h3>
+                <div class="out out--dark" id="raw-storage"></div>
+                <p class="hint">Перезагрузите страницу (F5) — корзина восстановится методом <code>Cart.fromJSON(JSON.parse(…))</code>.</p>
+            </div>
+        </div>
+    </section>
+
+    <p class="footer-note">ПССИП · JavaScript · ЛР 19–20 — JSON, cookie, Web Storage · тема «Behoof»</p>
+</main>
+
+<dialog class="modal" id="order-dialog">
+    <h3>Заказ оформлен</h3>
+    <div class="out" id="order-out"></div>
+    <form method="dialog" class="row" style="margin-top:14px"><button class="btn">OK</button></form>
+</dialog>
+<div class="toast-box" id="toasts"></div>
+
+<!-- Резервная копия каталога: нужна, только если страница открыта двойным кликом (file://) -->
+<script src="../assets/data/products.js"></script>
+<script src="../assets/behoof.js"></script>
+<script src="../17/js/models.js"></script>
+<script src="js/shop.js"></script>
+</body>
+</html>

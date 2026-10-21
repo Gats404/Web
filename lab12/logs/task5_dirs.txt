@@ -1,0 +1,56 @@
+PS C:\...\web\lab12> node task5-dirs.js
+1) mkdir { recursive: true }
+   создан data/shop/catalog/smartphones/
+   создан data/shop/catalog/speakers/
+   создан data/shop/orders/2026/10/
+   создан data/shop/empty/
+   + записано файлов: 6
+
+2) readdir(data/shop) — только имена:
+    [ 'catalog', 'empty', 'orders', 'readme.txt' ]
+
+3) readdir(data/shop, { withFileTypes: true }):
+   [папка] catalog
+   [папка] empty
+   [папка] orders
+   [файл]  readme.txt
+
+4) Рекурсивный обход (своя функция walk):
+shop/
+├── catalog/
+│   ├── smartphones/
+│   │   ├── iphone-13.json (40 Б)
+│   │   └── samsung-m32.json (43 Б)
+│   └── speakers/
+│       └── station-max.json (61 Б)
+├── empty/
+├── orders/
+│   └── 2026/
+│       └── 10/
+│           ├── order-1001.txt (49 Б)
+│           └── order-1002.txt (46 Б)
+└── readme.txt (51 Б)
+   Итого: папок 7, файлов 6, объём 290 Б
+
+5) readdir(data/shop, { recursive: true }) — встроенный обход:
+   catalog
+   catalog/smartphones
+   catalog/smartphones/iphone-13.json
+   catalog/smartphones/samsung-m32.json
+   catalog/speakers
+   catalog/speakers/station-max.json
+   empty
+   orders
+   orders/2026
+   orders/2026/10
+   orders/2026/10/order-1001.txt
+   orders/2026/10/order-1002.txt
+   readme.txt
+
+6) Удаление:
+   rmdir(empty) — пустая папка удалена
+   rmdir(orders) — ошибка ENOTEMPTY: в папке есть файлы, rmdir так не умеет
+   rm(orders, { recursive: true }) — удалена вместе с вложенными папками и файлами
+   Осталось в shop/: [ 'catalog', 'readme.txt' ]
+   rm(shop, { recursive, force }) — существует ли data/shop? нет
+[код завершения: 0]
